@@ -1,0 +1,36 @@
+{
+  "name": "eco-mmunity",
+  "version": "1.0.0",
+  "description": "Build Communities and have open discussions about environmental issues across the globe!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lexscher/eco-mmunity.git"
+  },
+  "keywords": [
+    "npm",
+    "webpack",
+    "react",
+    "redux",
+    "sass",
+    "scss",
+    "css",
+    "react-router",
+    "babel",
+    "community",
+    "ecology",
+    "ecological",
+    "issues",
+    "discussion",
+    "collaborate"
+  ],
+  "author": "Alexander Schelchere",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lexscher/eco-mmunity/issues"
+  },
+  "homepage": "https://github.com/Lexscher/eco-mmunity#readme"
+}
