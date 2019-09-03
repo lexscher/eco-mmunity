@@ -6,19 +6,23 @@
 .pnp.js
 
 .DS_STORE
+
 scripts/flow/*/.flowconfig
 *~
 *.pyc
 .grunt
 _SpecRunner.html
 __benchmarks__
+
 build/
 remote-repo/
 coverage/
+
 .module-cache
 fixtures/dom/public/react-dom.js
 fixtures/dom/public/react.js
 test/the-files-to-test.generated.js
+
 *.log*
 chrome-user-data
 *.sublime-project
