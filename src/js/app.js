@@ -9,7 +9,7 @@ export default class App extends Component {
     return(
       <Fragment>
         <header className="header nav-bar">Header</header>
-        <div className="body"></div>
+        <div className="body">body tea</div>
       </Fragment>
     )
   }
