@@ -1,6 +1,6 @@
 const common = require('./webpack.common');
 const merge = require('webpack-merge');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = merge(common, {
@@ -10,12 +10,18 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
+        ]
       }
     ] // <~ rules
   }, // <~ module
   plugins: [
-    new CleanWebpackPlugin(['dist/css', 'dist/js']),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['dist/css', 'dist/js']
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     })

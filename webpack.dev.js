@@ -13,7 +13,7 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(css|sass|scss)$/,
         use: [
           {
             loader: 'style-loader'
