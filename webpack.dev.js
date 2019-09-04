@@ -34,7 +34,7 @@ module.exports = merge(common, {
       title: 'Eco-mmunity',
       inject: false,
       template: require('html-webpack-template'),
-      bodyHtmlSnippet: '<main class="main" id="app"></main>'
+      bodyHtmlSnippet: '<main class="main" id="root"></main>'
     })
   ] // <~ Plugins
 });
