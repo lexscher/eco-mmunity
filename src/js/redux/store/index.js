@@ -5,6 +5,7 @@ import reducer from '../reducers';
 import thunk from 'redux-thunk';
 
 const initialState = {
+  loggedIn: false,
   currentUser: {
     status: 'Logged Out',
     token: null,
