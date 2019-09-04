@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { store } from './store';
-import { connect } from 'react-redux'
-
+import { store } from './redux/store';
+import { connect } from 'react-redux';
 
 class App extends Component {
   componentDidMount() {
@@ -22,18 +21,21 @@ class App extends Component {
     payload: communities
   });
 
-
   render() {
-    let communityNames = this.props.communities.map(({id, name}) => (<h1 key={id}>{name}</h1>))
-    return (
-      <Fragment>
-        <header className="header nav-bar">Header</header>
-        <div className="body">{communityNames}</div>
-      </Fragment>
-    );
+    let communityNames = this.props.communities.map(({ id, name }) => (
+      <h1 key={id}>{name}</h1>
+    ));
+    return [
+      <header key={0} className="header nav-bar">
+        Header
+      </header>,
+      <div key={1} className="body">
+        {communityNames}
+      </div>
+    ];
   }
 }
 
-const mapStateToProps = state => state
+const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
