@@ -1,17 +1,20 @@
+// SCSS Styling
+import '../sass/main.scss';
+// React
 import React from 'react';
 import Reactdom from 'react-dom';
-import '../sass/main.scss';
 import App from './app';
-
-import { store } from './store';
-
-// Necessary for Redux
+// React Router
+import { BrowserRouter } from 'react-router-dom';
+// Redux
 import { Provider } from 'react-redux';
-
+import { store } from './store';
 
 Reactdom.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
