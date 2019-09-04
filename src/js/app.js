@@ -55,6 +55,12 @@ class App extends Component {
           path="/"
           render={routerProps => <Dashboard {...routerProps} />}
         />
+        <Route
+          path="/profile"
+          render={routerProps => (
+            <div {...routerProps}>filler: User Profile</div>
+          )}
+        />
       </Switch>
     );
   }
