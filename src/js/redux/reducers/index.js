@@ -18,7 +18,8 @@ export default (state, action) => {
     // Data Related (On Reload/ Fetch) - Could be a "Load" or an "Update" functinality, every time we render, every time we make a new post.
     case 'SET_COMMUNITIES':
       return { ...state, communities: action.payload }
-    case 'LOAD_POSTS':
+    case 'SET_POSTS':
+        return { ...state, posts: action.payload }
       break;
     case 'LOAD_COMMENTS':
       break;
