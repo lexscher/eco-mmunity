@@ -22,6 +22,11 @@ class App extends Component {
       .catch(err => console.error(err.stack));
   };
 
+  changePage = page => ({
+    type: 'CHANGE_PAGE',
+    payload: page
+  });
+
   setCommunities = communities => ({
     type: 'SET_COMMUNITIES',
     payload: communities
@@ -47,19 +52,57 @@ class App extends Component {
     ));
     return (
       <Switch>
-        <header key={0} className="header nav-bar">
-          <NavBar />
+        <header className="header nav-bar">
+          <NavBar changePage={this.changePage} />
         </header>
         <Route
-          exact
           path="/"
           render={routerProps => <Dashboard {...routerProps} />}
         />
+        {/* user */}
         <Route
-          path="/profile"
+          path="/user/:username"
           render={routerProps => (
-            <div {...routerProps}>filler: User Profile</div>
+            <div {...routerProps}>
+              filler: Users Profile,things they liked/dis-liked/saved
+            </div>
           )}
+        />
+        <Route
+          path="/user/:username/communities"
+          render={routerProps => (
+            <div {...routerProps}>filler: Users communities</div>
+          )}
+        />
+        <Route
+          path="/user/:username/posts"
+          render={routerProps => (
+            <div {...routerProps}>filler: Users posts</div>
+          )}
+        />
+        <Route
+          path="/user/:username/comments"
+          render={routerProps => (
+            <div {...routerProps}>filler: Users comments</div>
+          )}
+        />
+        {/* Community */}
+        <Route
+          path="/eco/:community"
+          render={routerProps => <Dashboard {...routerProps} />}
+        />
+        <Route
+          path="/eco/:community/edit"
+          render={routerProps => <Dashboard {...routerProps} />}
+        />
+        {/* Comments on a Post/single post */}
+        <Route
+          path="/eco/:community/comments/:postId/:postSlug"
+          render={routerProps => <Dashboard {...routerProps} />}
+        />
+        <Route
+          path="/eco/:community/comments/:postId/:postSlug/edit"
+          render={routerProps => <Dashboard {...routerProps} />}
         />
       </Switch>
     );

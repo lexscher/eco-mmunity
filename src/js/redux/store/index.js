@@ -6,9 +6,9 @@ import thunk from 'redux-thunk';
 
 const initialState = {
   loggedIn: false,
+  loading: false,
+  pageState: 'default',
   currentUser: {
-    status: 'Logged Out',
-    token: null,
     firstName: "",
     lastName: "",
     username: "",
