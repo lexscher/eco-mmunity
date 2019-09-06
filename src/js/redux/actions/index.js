@@ -10,6 +10,8 @@ const postActions = {};
 
 const commentActions = {};
 
+const pageActions = {};
+
 // USER ACTIONS
 userActions.getCurrentUser = () => dispatch => {
   dispatch({ type: 'BEGIN_GET_PROFILE_REQUEST' });
@@ -108,7 +110,7 @@ userActions.signUp = (
 // COMMUNITY ACTIONS
 communityActions.loadCommunities = () => dispatch => {
   // Fetch all communities
-  fetch('http://localhost:3000/communities')
+  fetch(`${BASE_URL}/communities`)
     // Parse response into JSON
     .then(res => res.json())
     .then(communities => {
@@ -123,12 +125,41 @@ communityActions.loadCommunities = () => dispatch => {
       dispatch({
         type: 'GET_REQUEST_FAILED',
         payload: error
-      })
+      });
     });
 };
 
 // POST ACTIONS
+postActions.loadPosts = () => dispatch => {
+  // Fetch ALL Posts
+  fetch(`${BASE_URL}/posts`)
+    // Parse response into JSON
+    .then(res => res.json())
+    .then(posts => {
+      // Dispatch new action.
+      dispatch({
+        type: 'SET_POSTS',
+        payload: posts
+      });
+    })
+    .catch(error => {
+      // Handle our errors
+      dispatch({
+        type: 'GET_REQUEST_FAILED',
+        payload: error
+      });
+    });
+};
 
 // COMMENT ACTIONS
 
-export default { userActions, commentActions, postActions, communityActions };
+// PAGE ACTIONS
+
+
+export default {
+  userActions,
+  commentActions,
+  postActions,
+  communityActions,
+  pageActions
+};
