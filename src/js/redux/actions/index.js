@@ -12,7 +12,7 @@ export const commentActions = {};
 
 export const pageActions = {};
 
-// USER ACTIONS
+// USER ACTIONS ---------------------------------------------------------------------------------------------
 userActions.getCurrentUser = () => dispatch => {
   dispatch({ type: 'BEGIN_GET_PROFILE_REQUEST' });
 
@@ -107,7 +107,7 @@ userActions.signUp = (
     });
 };
 
-// COMMUNITY ACTIONS
+// COMMUNITY ACTIONS ---------------------------------------------------------------------------------------------
 communityActions.loadCommunities = () => dispatch => {
   // Fetch all communities
   fetch(`${BASE_URL}/communities`)
@@ -129,7 +129,7 @@ communityActions.loadCommunities = () => dispatch => {
     });
 };
 
-// POST ACTIONS
+// POST ACTIONS ---------------------------------------------------------------------------------------------
 postActions.loadPosts = () => dispatch => {
   // Fetch ALL Posts
   fetch(`${BASE_URL}/posts`)
@@ -151,9 +151,9 @@ postActions.loadPosts = () => dispatch => {
     });
 };
 
-// COMMENT ACTIONS
+// COMMENT ACTIONS ---------------------------------------------------------------------------------------------
 
-// PAGE ACTIONS
+// PAGE ACTIONS ---------------------------------------------------------------------------------------------
 pageActions.changePage = page => dispatch => {
   dispatch({
     type: 'CHANGE_PAGE',
