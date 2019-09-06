@@ -57,8 +57,8 @@ userActions.logIn = (username, password) => dispatch => {
     body: JSON.stringify({ username, password })
   })
     .then(res => res.json())
-    .then(({token, user}) => {
-      localStorage.token = token
+    .then(({ token, user }) => {
+      localStorage.token = token;
       dispatch({
         type: 'LOG_IN_REQUEST_SUCCESS',
         payload: user
@@ -72,26 +72,38 @@ userActions.logIn = (username, password) => dispatch => {
     });
 };
 
-userActions.signUp = (first_name, last_name, username, email, password) => dispatch => {
-  dispatch({ type: 'BEGIN_SIGN_UP_REQUEST'})
+userActions.signUp = (
+  first_name,
+  last_name,
+  username,
+  email,
+  password
+) => dispatch => {
+  dispatch({ type: 'BEGIN_SIGN_UP_REQUEST' });
 
   fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      Accept: 'application/json'
     },
     body: JSON.stringify({ first_name, last_name, username, email, password })
   })
-  .then(res => res.json())
-  .then(({token, user}) => {
-    localStorage.token = token
-    dispatch({
-      type: 'SIGN_UP_REQUEST_SUCCESS',
-      payload: user
+    .then(res => res.json())
+    .then(({ token, user }) => {
+      localStorage.token = token;
+      dispatch({
+        type: 'SIGN_UP_REQUEST_SUCCESS',
+        payload: user
+      });
     })
-  })
-}
+    .catch(error => {
+      dispatch({
+        type: 'SIGN_UP_REQUEST_FAILED',
+        payload: error
+      });
+    });
+};
 
 // COMMUNITY ACTIONS
 
