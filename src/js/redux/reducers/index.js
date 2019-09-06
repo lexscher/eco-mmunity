@@ -1,5 +1,17 @@
 import { combineReducers } from 'redux'
 
+/*
+'BEGIN_GET_PROFILE_REQUEST'
+'GET_PROFILE_REQUEST_SUCCESS'
+'GET_PROFILE_REQUEST_FAILURE'
+'BEGIN_LOG_IN_REQUEST'
+'LOG_IN_REQUEST_SUCCESS'
+'LOG_IN_REQUEST_FAILURE'
+'BEGIN_SIGN_UP_REQUEST'
+'SIGN_UP_REQUEST_SUCCESS'
+'SIGN_UP_REQUEST_FAILED'
+'SET_COMMUNITIES'
+*/
 export default (state, action) => {
   // This will be cleaned up!
   console.log(action.payload);
