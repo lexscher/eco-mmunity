@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useForm from './FormHooks';
+import { connect } from 'react-redux'
+import { userActions } from '../../redux/actions';
 
 const Register = () => {
   const { handleSubmit, handleInputChange, inputs } = useForm(signThemUp);
 
   function signThemUp() {
+    const { firstName, lastName, username, email, password } = inputs
     console.log("Dispatch Action to Register user");
+    props.signUp(firstName, lastName, username, email, password)
   }
 
   return (
@@ -59,4 +63,9 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = state => state;
+const mapDispatchToProps = {
+  signUp: userActions.signUp
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
