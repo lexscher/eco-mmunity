@@ -154,6 +154,12 @@ postActions.loadPosts = () => dispatch => {
 // COMMENT ACTIONS
 
 // PAGE ACTIONS
+pageActions.changePage = page => dispatch => {
+  dispatch({
+    type: 'CHANGE_PAGE',
+    payload: page
+  })
+}
 
 
 export default {
