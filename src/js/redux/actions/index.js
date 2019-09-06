@@ -2,15 +2,15 @@
 const BASE_URL = 'http://localhost:3000/';
 
 // Create base for actions
-const userActions = {};
+export const userActions = {};
 
-const communityActions = {};
+export const communityActions = {};
 
-const postActions = {};
+export const postActions = {};
 
-const commentActions = {};
+export const commentActions = {};
 
-const pageActions = {};
+export const pageActions = {};
 
 // USER ACTIONS
 userActions.getCurrentUser = () => dispatch => {
@@ -162,10 +162,4 @@ pageActions.changePage = page => dispatch => {
 }
 
 
-export default {
-  userActions,
-  commentActions,
-  postActions,
-  communityActions,
-  pageActions
-};
+
