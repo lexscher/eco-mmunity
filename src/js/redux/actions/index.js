@@ -106,6 +106,26 @@ userActions.signUp = (
 };
 
 // COMMUNITY ACTIONS
+communityActions.loadCommunities = () => dispatch => {
+  // Fetch all communities
+  fetch('http://localhost:3000/communities')
+    // Parse response into JSON
+    .then(res => res.json())
+    .then(communities => {
+      // Dispatch the action
+      dispatch({
+        type: 'SET_COMMUNITIES',
+        payload: communities
+      });
+    })
+    // catch the error
+    .catch(error => {
+      dispatch({
+        type: 'GET_REQUEST_FAILED',
+        payload: error
+      })
+    });
+};
 
 // POST ACTIONS
 
