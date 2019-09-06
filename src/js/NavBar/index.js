@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../redux/store';
 import { connect } from 'react-redux';
+import { pageActions } from '../redux/actions'
 
 class NavBar extends Component {
 
@@ -21,5 +22,9 @@ class NavBar extends Component {
 }
 
 const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  changePage: pageActions.changePage
+};
 
 export default connect(mapStateToProps)(NavBar);
