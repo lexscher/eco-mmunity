@@ -2,15 +2,17 @@
 const BASE_URL = 'http://localhost:3000/';
 
 // Create base for actions
-const userActions = {};
+export const userActions = {};
 
-const communityActions = {};
+export const communityActions = {};
 
-const postActions = {};
+export const postActions = {};
 
-const commentActions = {};
+export const commentActions = {};
 
-// USER ACTIONS
+export const pageActions = {};
+
+// USER ACTIONS ---------------------------------------------------------------------------------------------
 userActions.getCurrentUser = () => dispatch => {
   dispatch({ type: 'BEGIN_GET_PROFILE_REQUEST' });
 
@@ -57,8 +59,8 @@ userActions.logIn = (username, password) => dispatch => {
     body: JSON.stringify({ username, password })
   })
     .then(res => res.json())
-    .then(({token, user}) => {
-      localStorage.token = token
+    .then(({ token, user }) => {
+      localStorage.token = token;
       dispatch({
         type: 'LOG_IN_REQUEST_SUCCESS',
         payload: user
@@ -72,31 +74,92 @@ userActions.logIn = (username, password) => dispatch => {
     });
 };
 
-userActions.signUp = (first_name, last_name, username, email, password) => dispatch => {
-  dispatch({ type: 'BEGIN_SIGN_UP_REQUEST'})
+userActions.signUp = (
+  first_name,
+  last_name,
+  username,
+  email,
+  password
+) => dispatch => {
+  dispatch({ type: 'BEGIN_SIGN_UP_REQUEST' });
 
   fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      Accept: 'application/json'
     },
     body: JSON.stringify({ first_name, last_name, username, email, password })
   })
-  .then(res => res.json())
-  .then(({token, user}) => {
-    localStorage.token = token
-    dispatch({
-      type: 'SIGN_UP_REQUEST_SUCCESS',
-      payload: user
+    .then(res => res.json())
+    .then(({ token, user }) => {
+      localStorage.token = token;
+      dispatch({
+        type: 'SIGN_UP_REQUEST_SUCCESS',
+        payload: user
+      });
     })
+    .catch(error => {
+      dispatch({
+        type: 'SIGN_UP_REQUEST_FAILED',
+        payload: error
+      });
+    });
+};
+
+// COMMUNITY ACTIONS ---------------------------------------------------------------------------------------------
+communityActions.loadCommunities = () => dispatch => {
+  // Fetch all communities
+  fetch(`${BASE_URL}/communities`)
+    // Parse response into JSON
+    .then(res => res.json())
+    .then(communities => {
+      // Dispatch the action
+      dispatch({
+        type: 'SET_COMMUNITIES',
+        payload: communities
+      });
+    })
+    // catch the error
+    .catch(error => {
+      dispatch({
+        type: 'GET_REQUEST_FAILED',
+        payload: error
+      });
+    });
+};
+
+// POST ACTIONS ---------------------------------------------------------------------------------------------
+postActions.loadPosts = () => dispatch => {
+  // Fetch ALL Posts
+  fetch(`${BASE_URL}/posts`)
+    // Parse response into JSON
+    .then(res => res.json())
+    .then(posts => {
+      // Dispatch new action.
+      dispatch({
+        type: 'SET_POSTS',
+        payload: posts
+      });
+    })
+    .catch(error => {
+      // Handle our errors
+      dispatch({
+        type: 'GET_REQUEST_FAILED',
+        payload: error
+      });
+    });
+};
+
+// COMMENT ACTIONS ---------------------------------------------------------------------------------------------
+
+// PAGE ACTIONS ---------------------------------------------------------------------------------------------
+pageActions.changePage = page => dispatch => {
+  dispatch({
+    type: 'CHANGE_PAGE',
+    payload: page
   })
 }
 
-// COMMUNITY ACTIONS
 
-// POST ACTIONS
 
-// COMMENT ACTIONS
-
-export default { userActions, commentActions, postActions, communityActions };

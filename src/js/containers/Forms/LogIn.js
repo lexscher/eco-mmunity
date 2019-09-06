@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import useForm from './FormHooks';
+import { connect } from 'react-redux'
+import { userActions } from '../../redux/actions';
 
-const LogIn = () => {
+const LogIn = props => {
   const { handleSubmit, handleInputChange, inputs } = useForm(logThemIn);
-
+  // this.logThemIn = this.logThemIn.bind(this);
   function logThemIn() {
-    console.log("Dispatch Action to Log In user");
-    console.log(inputs);
+    const { username, password } = inputs
+    props.logIn(username, password)
   }
 
   return (
@@ -34,4 +36,9 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+const mapStateToProps = state => state;
+const mapDispatchToProps = {
+  logIn: userActions.logIn
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

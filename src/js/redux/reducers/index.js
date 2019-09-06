@@ -22,7 +22,6 @@ export default (state, action) => {
       return { ...state, communities: action.payload };
     case 'SET_POSTS':
       return { ...state, posts: action.payload };
-      break;
     case 'LOAD_COMMENTS':
       break;
     // Change the Page

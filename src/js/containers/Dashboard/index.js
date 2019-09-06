@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import ListPosts from '../ListPosts';
 import Form from '../Forms';
 import { connect } from 'react-redux';
+import { communityActions, postActions } from '../../redux/actions'
 
 class Dashboard extends Component {
-  filterPosts = () => {};
+  componentDidMount(){
+    this.props.loadPosts()
+  }
 
   render() {
     return (
@@ -27,4 +30,9 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = {
+  loadCommunites: communityActions.loadCommunities,
+  loadPosts: postActions.loadPosts,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
