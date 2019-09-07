@@ -1,36 +1,98 @@
-import { combineReducers } from 'redux'
-
 export default (state, action) => {
-  // This will be cleaned up!
-  console.log(action.payload);
   switch (action.type) {
-    // User Related
-    // Check if a user is logged in (When we want to view user profile, or do any CREATE, UPDATE, DELETE methods to database.)
-    case 'CHECK_USER':
-      break;
-    // The two below can Possibly me merged into SET_USER
-    // Log in the user (GET - Fetch user, CREATE token, save token to localStorage)
-    case 'LOG_IN_USER':
-      break;
-    // register the user (POST - Fetch user, CREATE token, save token to localStorage)
-    case 'REGISTER_USER':
-      break;
-    // Page Related
-
-    // Data Related (On Reload/ Fetch) - Could be a "Load" or an "Update" functinality, every time we render, every time we make a new post.
-    case 'SET_COMMUNITIES':
-      return { ...state, communities: action.payload };
-    case 'SET_POSTS':
-      return { ...state, posts: action.payload };
-    case 'LOAD_COMMENTS':
-      break;
-    // Change the Page
+    /*/ ------------ CURRENT USER REDUCERS ------------ /*/
+    // get current user
+    case 'BEGIN_GET_PROFILE_REQUEST':
+      return { ...state, loading: true };
+    case 'GET_PROFILE_REQUEST_SUCCESS':
+      return { ...state, currentUser: action.payload, loading: false };
+    case 'GET_PROFILE_REQUEST_FAILURE':
+      const { issues } = action.issues;
+      return { ...state, issues };
+    // Log In
+    case 'BEGIN_LOG_IN_REQUEST':
+      return { ...state, loading: true };
+    case 'LOG_IN_REQUEST_SUCCESS':
+      return {
+        ...state,
+        currentUser: action.payload,
+        loggedIn: true,
+        loading: false
+      };
+    case 'LOG_IN_REQUEST_FAILURE':
+      const { issues } = action.issues;
+      return { ...state, issues };
+    // Sign Up
+    case 'BEGIN_SIGN_UP_REQUEST':
+      return { ...state, loading: true };
+    case 'SIGN_UP_REQUEST_SUCCESS':
+      return {
+        ...state,
+        currentUser: action.payload,
+        loggedIn: true,
+        loading: false
+      };
+    case 'SIGN_UP_REQUEST_FAILED':
+      const { issues } = action.issues;
+      return { ...state, issues };
+    // Sign Out
+    case 'SIGN_OUT_USER':
+      return {
+        ...state,
+        loggedIn: false,
+        currentUser: {
+          firstName: '',
+          lastName: '',
+          username: '',
+          email: ''
+        }
+      };
+    /*/ ------------ CURRENT PAGE/PAGE STATE REDUCERS ------------ /*/
     case 'CHANGE_PAGE':
       return { ...state, pageState: action.payload };
+    /*/ ------------ COMMUNITY REDUCERS ------------ /*/
+    // Data Related (On Reload/ Fetch) - Could be a "Load" or an "Update" functinality, every time we render, every time we make a new post.
+    case 'SET_COMMUNITIES':
+      return { ...state, communities: [...action.payload] };
+    // Creation (POST)
+    case 'CREATE_COMMUNITY':
+      return { ...state, communities: [...action.payload] };
+    // Edit (PUT/PATCH)
+    case 'EDIT_COMMUNITY':
+      return { ...state, communities: [...action.payload] };
+    // Delete (DELETE)
+    case 'DELETE_COMMUNITY':
+      return { ...state, communities: [...action.payload] };
+
+    /*/ ------------ POST REDUCERS ------------ /*/
+    case 'SET_POSTS':
+      return { ...state, posts: [...action.payload] };
+    // Creation (POST)
+    case 'CREATE_POST':
+      return { ...state, posts: [...action.payload] };
+    // Edit (PUT/PATCH)
+    case 'EDIT_POST':
+      return { ...state, posts: [...action.payload] };
+    // Delete (DELETE)
+    case 'DELETE_POST':
+      return { ...state, posts: [...action.payload] };
+    /*/ ------------ COMMENT REDUCERS ------------ /*/
+    case 'SET_COMMENTS':
+      return { ...state, comments: [...action.payload] };
+    // Creation (POST)
+    case 'CREATE_COMMENT':
+      return { ...state, comments: [...action.payload] };
+    // Edit (PUT/PATCH)
+    case 'EDIT_COMMENT':
+      return { ...state, comments: [...action.payload] };
+    // Delete (DELETE)
+    case 'DELETE_COMMENT':
+      return { ...state, comments: [...action.payload] };
+    /*/ ------------ JOINED COMMUNITY (Logged In User - "Joined/Favorited"  - Community) ------------ /*/
+    /*/ ------------ VOTED POST (Logged In User - "Vote"  - Post) ------------ /*/
+    /*/ ------------ VOTED COMMENT (Logged In User - "Vote"  - Comment) ------------ /*/
 
     default:
-      break;
+      return state;
   }
-
-  return state;
 };

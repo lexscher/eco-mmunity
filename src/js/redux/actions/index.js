@@ -39,10 +39,10 @@ userActions.getCurrentUser = () => dispatch => {
       });
     })
     // Handle any errors
-    .catch(error => {
+    .catch(issues => {
       dispatch({
         type: 'GET_PROFILE_REQUEST_FAILURE',
-        error
+        issues
       });
     });
 };
@@ -66,10 +66,10 @@ userActions.logIn = (username, password) => dispatch => {
         payload: user
       });
     })
-    .catch(error => {
+    .catch(issues => {
       dispatch({
         type: 'LOG_IN_REQUEST_FAILURE',
-        error
+        issues
       });
     });
 };
@@ -99,10 +99,10 @@ userActions.signUp = (
         payload: user
       });
     })
-    .catch(error => {
+    .catch(issues => {
       dispatch({
         type: 'SIGN_UP_REQUEST_FAILED',
-        payload: error
+        issues
       });
     });
 };
@@ -121,10 +121,10 @@ communityActions.loadCommunities = () => dispatch => {
       });
     })
     // catch the error
-    .catch(error => {
+    .catch(issues => {
       dispatch({
         type: 'GET_REQUEST_FAILED',
-        payload: error
+        issues
       });
     });
 };
@@ -142,16 +142,36 @@ postActions.loadPosts = () => dispatch => {
         payload: posts
       });
     })
-    .catch(error => {
+    .catch(issues => {
       // Handle our errors
       dispatch({
         type: 'GET_REQUEST_FAILED',
-        payload: error
+        issues
       });
     });
 };
 
 // COMMENT ACTIONS ---------------------------------------------------------------------------------------------
+commentActions.loadPosts = () => dispatch => {
+  // Fetch ALL Posts
+  fetch(`${BASE_URL}/comments`)
+    // Parse response into JSON
+    .then(res => res.json())
+    .then(posts => {
+      // Dispatch new action.
+      dispatch({
+        type: 'SET_COMMENTS',
+        payload: posts
+      });
+    })
+    .catch(issues => {
+      // Handle our errors
+      dispatch({
+        type: 'GET_REQUEST_FAILED',
+        issues
+      });
+    });
+};
 
 // PAGE ACTIONS ---------------------------------------------------------------------------------------------
 pageActions.changePage = page => dispatch => {

@@ -68,4 +68,4 @@ const mapDispatchToProps = {
   signUp: userActions.signUp
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
