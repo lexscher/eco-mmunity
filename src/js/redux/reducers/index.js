@@ -55,7 +55,11 @@ export default (state, action) => {
     /*/ ------------ COMMUNITY REDUCERS ------------ /*/
     // Data Related (On Reload/ Fetch) - Could be a "Load" or an "Update" functinality, every time we render, every time we make a new post.
     case 'SET_COMMUNITIES':
-      return { ...state, communitiesLoaded: true, communities: [...action.payload] };
+      return {
+        ...state,
+        communitiesLoaded: true,
+        communities: [...action.payload]
+      };
     // Creation (POST)
     case 'CREATE_COMMUNITY':
       return { ...state, communities: [...action.payload] };
@@ -65,6 +69,9 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_COMMUNITY':
       return { ...state, communities: [...action.payload] };
+    // SET CURRENT COMMUNITY
+    case 'SET_CURRENT_COMMUNITY':
+      return { ...state, currentCommunity: { ...action.payload } };
 
     /*/ ------------ POST REDUCERS ------------ /*/
     case 'SET_POSTS':
