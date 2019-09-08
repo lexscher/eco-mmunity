@@ -5,8 +5,7 @@ import { communityActions } from '../../redux/actions';
 
 class ListCommunities extends Component {
   state = {
-    showList: false,
-    currentCommunity: {}
+    showList: false
   };
 
   componentDidMount() {
@@ -15,16 +14,24 @@ class ListCommunities extends Component {
 
   toggleShowList = () => this.setState({ showList: !this.state.showList });
 
-  setCurrentCommunity = community =>
-    this.setState({ currentCommunity: community });
+  // setCurrentCommunity = community =>
+  //   this.setState({ currentCommunity: community });
+
+  resetCurrentCommunity = () =>
+    this.setState({ currentCommunity: { name: 'Communities' } });
 
   render() {
+    let allCommunities = (
+      <Link to="/" onCLick={() => this.resetCurrentCommunity()}>
+        All
+      </Link>
+    );
     let communities = this.props.communities.map(community => (
       <Link
         to={`/eco/${community.name}`}
         key={community.name}
         className="community-list-item"
-        onClick={() => this.setCurrentCommunity(community)}
+        onClick={() => this.props.setCurrentCommunity(community)}
       >
         {community.name}
       </Link>
@@ -32,12 +39,15 @@ class ListCommunities extends Component {
     return (
       <div>
         <div onClick={this.toggleShowList}>
-          {this.state.currentCommunity.name
-            ? this.state.currentCommunity.name
+          {this.props.currentCommunity.name
+            ? this.props.currentCommunity.name
             : 'Communities'}
         </div>
         {this.state.showList ? (
-          <div className="community-list-container">{communities}</div>
+          <div className="community-list-container">
+            {allCommunities}
+            {communities}
+          </div>
         ) : (
           ''
         )}
@@ -49,7 +59,8 @@ class ListCommunities extends Component {
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
-  loadCommunities: communityActions.loadCommunities
+  loadCommunities: communityActions.loadCommunities,
+  setCurrentCommunity: communityActions.setCurrentCommunity
 };
 
 export default connect(
