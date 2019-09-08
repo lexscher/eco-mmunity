@@ -7,15 +7,16 @@ class ListCommunities extends Component {
   state = {
     showList: false,
     currentCommunity: {}
-  }
+  };
 
   componentDidMount() {
-    this.props.loadCommunities()
+    this.props.loadCommunities();
   }
 
-  toggleShowList = () => this.setState({showList: !this.state.showList})
+  toggleShowList = () => this.setState({ showList: !this.state.showList });
 
-  setCurrentCommunity = community => this.setState({currentCommunity: community })
+  setCurrentCommunity = community =>
+    this.setState({ currentCommunity: community });
 
   render() {
     let communities = this.props.communities.map(community => (
@@ -30,8 +31,16 @@ class ListCommunities extends Component {
     ));
     return (
       <div>
-        <div>{this.state.currentCommunity.name ? this.state.currentCommunity.name : 'Communities' }</div>
-        <div className="community-list-container">{communities}</div>
+        <div onClick={this.toggleShowList}>
+          {this.state.currentCommunity.name
+            ? this.state.currentCommunity.name
+            : 'Communities'}
+        </div>
+        {this.state.showList ? (
+          <div className="community-list-container">{communities}</div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
@@ -43,4 +52,7 @@ const mapDispatchToProps = {
   loadCommunities: communityActions.loadCommunities
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListCommunities);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListCommunities);
