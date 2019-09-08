@@ -9,14 +9,17 @@ const initialState = {
   loading: false,
   pageState: 'default',
   currentUser: {
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: ""
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: ''
   },
   communities: [],
+  communitiesLoaded: false,
   posts: [],
-  comments: []
+  postsLoaded: false,
+  comments: [],
+  commentsLoaded: false
 };
 
 export const store = createStore(reducer, initialState, applyMiddleware(thunk));
