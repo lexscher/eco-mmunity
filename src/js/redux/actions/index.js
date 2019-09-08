@@ -134,6 +134,13 @@ communityActions.loadCommunities = () => dispatch => {
     });
 };
 
+communityActions.setCurrentCommunity = community => dispatch => {
+  dispatch({
+    type: 'SET_CURRENT_COMMUNITY',
+    payload: community
+  })
+}
+
 // POST ACTIONS ---------------------------------------------------------------------------------------------
 postActions.loadPosts = () => dispatch => {
   // Fetch ALL Posts
