@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import ListPosts from '../ListPosts';
 import Form from '../Forms';
 import { connect } from 'react-redux';
-import { communityActions, postActions } from '../../redux/actions'
+import { communityActions, postActions } from '../../redux/actions';
 
 class Dashboard extends Component {
-  componentDidMount(){
-    this.props.loadPosts()
+  componentDidMount() {
+    this.props.loadPosts();
   }
 
   render() {
@@ -16,10 +16,16 @@ class Dashboard extends Component {
           <Form />
         ) : (
           [
-            <div key={0} className="side-bar">List of Community Names</div>,
+            <div key={0} className="side-bar">
+              List of Community Names
+            </div>,
             <div key={1} className="list-posts-container">
               <h1>Click on a community to see it's posts</h1>
-              <ListPosts posts={this.props.posts} />
+              {this.props.postsLoaded ? (
+                <ListPosts posts={this.props.posts} />
+              ) : (
+                'Please wait while we make things better for you... 🍺'
+              )}
             </div>
           ]
         )}
@@ -32,7 +38,10 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   loadCommunites: communityActions.loadCommunities,
-  loadPosts: postActions.loadPosts,
-}
+  loadPosts: postActions.loadPosts
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Dashboard);
