@@ -5,9 +5,14 @@ export default (state, action) => {
     case 'BEGIN_GET_PROFILE_REQUEST':
       return { ...state, loading: true };
     case 'GET_PROFILE_REQUEST_SUCCESS':
-      return { ...state, currentUser: action.payload, loading: false };
+      return {
+        ...state,
+        currentUser: action.payload,
+        loggedIn: true,
+        loading: false
+      };
     case 'GET_PROFILE_REQUEST_FAILURE':
-       return { ...state, issues: action.issues };
+      return { ...state, issues: action.issues };
     // Log In
     case 'BEGIN_LOG_IN_REQUEST':
       return { ...state, loading: true };
@@ -19,7 +24,7 @@ export default (state, action) => {
         loading: false
       };
     case 'LOG_IN_REQUEST_FAILURE':
-       return { ...state, issues: action.issues };
+      return { ...state, issues: action.issues };
     // Sign Up
     case 'BEGIN_SIGN_UP_REQUEST':
       return { ...state, loading: true };
@@ -31,7 +36,7 @@ export default (state, action) => {
         loading: false
       };
     case 'SIGN_UP_REQUEST_FAILED':
-       return { ...state, issues: action.issues };
+      return { ...state, issues: action.issues };
     // Sign Out
     case 'SIGN_OUT_USER':
       return {
