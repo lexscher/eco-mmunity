@@ -4,5 +4,12 @@ import React from 'react';
 // community List Item in the ListsCommunities container.
 // Filter posts based on community_id attribute
 const Community = ({ name, description }) => {
-  return <div className="community"></div>;
+  return (
+    <div className="community">
+      <h1>{name}</h1>
+      <h4>{description}</h4>
+    </div>
+  );
 };
+
+export default Community;
