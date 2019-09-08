@@ -14,15 +14,14 @@ class ListCommunities extends Component {
 
   toggleShowList = () => this.setState({ showList: !this.state.showList });
 
-  // setCurrentCommunity = community =>
-  //   this.setState({ currentCommunity: community });
-
-  resetCurrentCommunity = () =>
-    this.setState({ currentCommunity: { name: 'Communities' } });
-
   render() {
     let allCommunities = (
-      <Link to="/" onCLick={() => this.resetCurrentCommunity()}>
+      <Link
+        to="/"
+        key={`all`}
+        className="community-list-item"
+        onClick={() => this.props.resetCurrentCommunity()}
+      >
         All
       </Link>
     );
@@ -60,7 +59,8 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   loadCommunities: communityActions.loadCommunities,
-  setCurrentCommunity: communityActions.setCurrentCommunity
+  setCurrentCommunity: communityActions.setCurrentCommunity,
+  resetCurrentCommunity: communityActions.resetCurrentCommunity
 };
 
 export default connect(
