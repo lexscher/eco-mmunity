@@ -69,8 +69,11 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_COMMUNITY':
       return { ...state, communities: [...action.payload] };
-    // SET CURRENT COMMUNITY
+    // SET CURRENT COMMUNITY to what the user has selected
     case 'SET_CURRENT_COMMUNITY':
+      return { ...state, currentCommunity: { ...action.payload } };
+    // RESET CURRENT COMMUNITY, show all posts again
+    case 'RESET_CURRENT_COMMUNITY':
       return { ...state, currentCommunity: { ...action.payload } };
 
     /*/ ------------ POST REDUCERS ------------ /*/
