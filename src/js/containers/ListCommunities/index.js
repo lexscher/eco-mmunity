@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { communityActions } from '../../redux/actions';
 
 class ListCommunities extends Component {
+  componentDidMount() {
+    this.props.loadCommunities()
+  }
   render() {
     let communities = this.props.communities.map(community => (
       <Link
@@ -19,4 +23,8 @@ class ListCommunities extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(ListCommunities);
+const mapDispatchToProps = {
+  loadCommunities: communityActions.loadCommunities
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListCommunities);
