@@ -55,7 +55,11 @@ export default (state, action) => {
     /*/ ------------ COMMUNITY REDUCERS ------------ /*/
     // Data Related (On Reload/ Fetch) - Could be a "Load" or an "Update" functinality, every time we render, every time we make a new post.
     case 'SET_COMMUNITIES':
-      return { ...state, communities: [...action.payload] };
+      return {
+        ...state,
+        communitiesLoaded: true,
+        communities: [...action.payload]
+      };
     // Creation (POST)
     case 'CREATE_COMMUNITY':
       return { ...state, communities: [...action.payload] };
@@ -65,10 +69,16 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_COMMUNITY':
       return { ...state, communities: [...action.payload] };
+    // SET CURRENT COMMUNITY to what the user has selected
+    case 'SET_CURRENT_COMMUNITY':
+      return { ...state, currentCommunity: { ...action.payload } };
+    // RESET CURRENT COMMUNITY, show all posts again
+    case 'RESET_CURRENT_COMMUNITY':
+      return { ...state, currentCommunity: { ...action.payload } };
 
     /*/ ------------ POST REDUCERS ------------ /*/
     case 'SET_POSTS':
-      return { ...state, posts: [...action.payload] };
+      return { ...state, postsLoaded: true, posts: [...action.payload] };
     // Creation (POST)
     case 'CREATE_POST':
       return { ...state, posts: [...action.payload] };
@@ -80,7 +90,7 @@ export default (state, action) => {
       return { ...state, posts: [...action.payload] };
     /*/ ------------ COMMENT REDUCERS ------------ /*/
     case 'SET_COMMENTS':
-      return { ...state, comments: [...action.payload] };
+      return { ...state, commentsLoaded: true, comments: [...action.payload] };
     // Creation (POST)
     case 'CREATE_COMMENT':
       return { ...state, comments: [...action.payload] };

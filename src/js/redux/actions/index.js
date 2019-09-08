@@ -134,6 +134,20 @@ communityActions.loadCommunities = () => dispatch => {
     });
 };
 
+communityActions.setCurrentCommunity = community => dispatch => {
+  dispatch({
+    type: 'SET_CURRENT_COMMUNITY',
+    payload: community
+  });
+};
+
+communityActions.resetCurrentCommunity = () => dispatch => {
+  dispatch({
+    type: 'RESET_CURRENT_COMMUNITY',
+    payload: { name: null }
+  });
+};
+
 // POST ACTIONS ---------------------------------------------------------------------------------------------
 postActions.loadPosts = () => dispatch => {
   // Fetch ALL Posts

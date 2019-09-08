@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { pageActions, userActions } from '../redux/actions';
+import { pageActions, userActions, communityActions } from '../redux/actions';
 
 class NavBar extends Component {
   render() {
@@ -36,7 +36,8 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   changePage: pageActions.changePage,
-  signOut: userActions.signOut
+  signOut: userActions.signOut,
+  resetCurrentCommunity: communityActions.resetCurrentCommunity
 };
 
 export default connect(

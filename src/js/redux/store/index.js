@@ -16,6 +16,7 @@ const initialState = {
   },
   communities: [],
   communitiesLoaded: false,
+  currentCommunity: { name: null },
   posts: [],
   postsLoaded: false,
   comments: [],
