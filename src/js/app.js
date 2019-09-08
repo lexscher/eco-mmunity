@@ -7,6 +7,7 @@ import { userActions } from './redux/actions';
 import NavBar from './NavBar';
 import Dashboard from './containers/Dashboard';
 import Profile from './containers/Profile';
+import ListCommunities from './containers/ListCommunities';
 
 class App extends Component {
   componentDidMount() {
@@ -15,7 +16,9 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <header className="header nav-bar">
+        <header className="header">
+          <h4>Eco-mmunity</h4>
+          <ListCommunities />
           <NavBar />
         </header>
         <Route
@@ -25,7 +28,7 @@ class App extends Component {
         />
         {/* user */}
         <Route
-          exact
+          
           path="/user/:username"
           render={routerProps => <Profile {...routerProps} />}
         />
