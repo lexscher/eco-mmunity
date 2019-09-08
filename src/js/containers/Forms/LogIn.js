@@ -1,14 +1,13 @@
 import React from 'react';
 import useForm from './FormHooks';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { userActions } from '../../redux/actions';
 
 const LogIn = props => {
   const { handleSubmit, handleInputChange, inputs } = useForm(logThemIn);
-  // this.logThemIn = this.logThemIn.bind(this);
   function logThemIn() {
-    const { username, password } = inputs
-    props.logIn(username, password)
+    const { username, password } = inputs;
+    props.logIn(username, password);
   }
 
   return (
@@ -26,8 +25,8 @@ const LogIn = props => {
           type="text"
           name="password"
           placeholder="password"
-          value={inputs.password}
-          onChange={handleInputChange}
+          value={inputs.password || ''}
+          onChange={handleInputChange || ''}
           required
         />
         <button type="submit">Log In</button>
@@ -41,4 +40,7 @@ const mapDispatchToProps = {
   logIn: userActions.logIn
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LogIn);

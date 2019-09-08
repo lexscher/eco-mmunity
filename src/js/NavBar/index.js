@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { pageActions } from '../redux/actions';
+import { pageActions, userActions } from '../redux/actions';
 
 class NavBar extends Component {
   render() {
@@ -11,7 +11,14 @@ class NavBar extends Component {
           Home
         </Link>
         {this.props.loggedIn ? (
-          [<Link to="/profile">Profile</Link>, <Link>Log Out</Link>]
+          [
+            <Link to={`/user/${this.props.currentUser.username}`} key={0}>
+              Profile
+            </Link>,
+            <Link key={1} to="/" onClick={() => this.props.signOut()}>
+              Log Out
+            </Link>
+          ]
         ) : (
           <Link
             to="/assimilate"
@@ -28,7 +35,8 @@ class NavBar extends Component {
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
-  changePage: pageActions.changePage
+  changePage: pageActions.changePage,
+  signOut: userActions.signOut
 };
 
 export default connect(

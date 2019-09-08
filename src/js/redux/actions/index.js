@@ -14,24 +14,18 @@ export const pageActions = {};
 
 // USER ACTIONS ---------------------------------------------------------------------------------------------
 userActions.getCurrentUser = () => dispatch => {
+  if (!localStorage.token) return;
   dispatch({ type: 'BEGIN_GET_PROFILE_REQUEST' });
-
   // Fetch the user profile
   fetch(`${BASE_URL}/profile`, {
     headers: {
       Authorization: localStorage.token
     }
   })
-    .then(res => {
-      // Check for an invalid response
-      if (res.status !== (200 || 201 || 203)) throw new Error('Unauthorized');
-      return res;
-    })
     // Parse response into JSON
     .then(res => res.json())
-    .then(user => {
-      // If the user comes back as nil, their token was invalid
-      if (!user) throw new Error('Unauthorized');
+    .then(({ token, user, errors }) => {
+      if (errors) return alert(errors);
       // Dispatch our current user
       dispatch({
         type: 'GET_PROFILE_REQUEST_SUCCESS',
@@ -59,12 +53,15 @@ userActions.logIn = (username, password) => dispatch => {
     body: JSON.stringify({ username, password })
   })
     .then(res => res.json())
-    .then(({ token, user }) => {
+    .then(({ token, user, errors }) => {
+      if (errors) return alert(errors);
+      // debugger;
       localStorage.token = token;
       dispatch({
         type: 'LOG_IN_REQUEST_SUCCESS',
         payload: user
       });
+      pageActions.changePage('default');
     })
     .catch(issues => {
       dispatch({
@@ -92,12 +89,14 @@ userActions.signUp = (
     body: JSON.stringify({ first_name, last_name, username, email, password })
   })
     .then(res => res.json())
-    .then(({ token, user }) => {
+    .then(({ token, user, errors }) => {
+      if (errors) return alert(errors);
       localStorage.token = token;
       dispatch({
         type: 'SIGN_UP_REQUEST_SUCCESS',
         payload: user
       });
+      pageActions.changePage('default');
     })
     .catch(issues => {
       dispatch({
@@ -105,6 +104,12 @@ userActions.signUp = (
         issues
       });
     });
+};
+
+userActions.signOut = () => dispatch => {
+  if (!localStorage.token) return;
+  localStorage.clear();
+  dispatch({ type: 'SIGN_OUT_USER' });
 };
 
 // COMMUNITY ACTIONS ---------------------------------------------------------------------------------------------
@@ -178,8 +183,5 @@ pageActions.changePage = page => dispatch => {
   dispatch({
     type: 'CHANGE_PAGE',
     payload: page
-  })
-}
-
-
-
+  });
+};

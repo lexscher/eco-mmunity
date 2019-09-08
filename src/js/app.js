@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { userActions } from './redux/actions';
 
 // Components
 import NavBar from './NavBar';
 import Dashboard from './containers/Dashboard';
+import Profile from './containers/Profile';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.getCurrentUser();
+  }
   render() {
     return (
       <Switch>
@@ -14,17 +19,15 @@ class App extends Component {
           <NavBar />
         </header>
         <Route
+          exact
           path="/"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         {/* user */}
         <Route
+          exact
           path="/user/:username"
-          render={routerProps => (
-            <div {...routerProps}>
-              filler: Users Profile,things they liked/dis-liked/saved
-            </div>
-          )}
+          render={routerProps => <Profile {...routerProps} />}
         />
         <Route
           path="/user/:username/communities"
@@ -69,4 +72,11 @@ class App extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  getCurrentUser: userActions.getCurrentUser
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
