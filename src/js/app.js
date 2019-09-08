@@ -26,6 +26,10 @@ class App extends Component {
           path="/"
           render={routerProps => <Dashboard {...routerProps} />}
         />
+        <Route
+          path="/assimilate"
+          render={routerProps => <Dashboard {...routerProps} />}
+        />
         {/* user */}
         <Route
           
