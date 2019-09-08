@@ -10,6 +10,14 @@ class Dashboard extends Component {
   }
 
   render() {
+    let postList = [];
+    if (this.props.currentCommunity.name) {
+      postList = this.props.posts.filter(
+        post => post.community_id == this.props.currentCommunity.id
+      );
+    } else {
+      postList = this.props.posts;
+    }
     return (
       <div className="dash">
         {this.props.pageState == 'assimilation' ? (
@@ -22,9 +30,13 @@ class Dashboard extends Component {
             <div key={1} className="list-posts-container">
               <h1>Click on a community to see it's posts</h1>
               {this.props.postsLoaded ? (
-                <ListPosts posts={this.props.posts} />
+                postList.length > 0 ? (
+                  <ListPosts posts={postList} />
+                ) : (
+                  <h1>Sorry! There aren't any posts in this community yet.</h1>
+                )
               ) : (
-                'Please wait while we make things better for you... 🍺'
+                'Please wait while we make things better for you... 🌱'
               )}
             </div>
           ]
