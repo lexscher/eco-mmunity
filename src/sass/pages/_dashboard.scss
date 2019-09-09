@@ -1,5 +1,14 @@
-.dash {
+div.dash {
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  .list-posts-container {
+    position: relative;
+    height: 65rem;
+    overflow: scroll;
+  }
+  
 }
+
