@@ -13,12 +13,14 @@ class Post extends Component {
       votes,
       voters
     } = this.props.currentPost.attributes;
-    let commentList = this.props.currentComments.map(comment => <Comment comment={comment} />);
+    let commentList = this.props.currentComments.map(comment => (
+      <Comment comment={comment} />
+    ));
     return (
       <div className="post--view single-post">
         <h1>{title}</h1>
         <p>{content}</p>
-        {this.state.currentComments.length > 0 ? (
+        {this.props.currentComments && this.props.currentComments.length > 0 ? (
           <div className="comments-container">{commentList}</div>
         ) : (
           ''
@@ -31,7 +33,7 @@ class Post extends Component {
 const mapStateToProps = state => state;
 
 // const mapDispatchToProps = {
-//   loadComments: commentActions.loadComments
+//   setCurrentComments
 // }
 
 export default connect(mapStateToProps)(Post);
