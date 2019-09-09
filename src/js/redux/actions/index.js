@@ -170,6 +170,20 @@ postActions.loadPosts = () => dispatch => {
     });
 };
 
+postActions.setCurrentPost = post => dispatch => {
+  dispatch({
+    type: 'SET_CURRENT_POST',
+    payload: post
+  });
+};
+
+postActions.resetCurrentPost = () => dispatch => {
+  dispatch({
+    type: 'RESET_CURRENT_POST',
+    payload: { content: null }
+  });
+};
+
 // COMMENT ACTIONS ---------------------------------------------------------------------------------------------
 commentActions.loadPosts = () => dispatch => {
   // Fetch ALL Posts
