@@ -13,7 +13,7 @@ class NavBar extends Component {
         {this.props.loggedIn ? (
           [
             <Link to={`/user/${this.props.currentUser.username}`} key={0}>
-              Profile
+              {this.props.currentUser.username}
             </Link>,
             <Link key={1} to="/" onClick={() => this.props.signOut()}>
               Log Out
