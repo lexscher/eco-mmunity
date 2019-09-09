@@ -16,12 +16,13 @@ const initialState = {
   },
   communities: [],
   communitiesLoaded: false,
-  currentCommunity: { name: null },
+  currentCommunity: { id: null },
   posts: [],
   postsLoaded: false,
-  currentPost: { content: null },
+  currentPost: { id: null },
   comments: [],
-  commentsLoaded: false
+  commentsLoaded: false,
+  currentComments: []
 };
 
 export const store = createStore(reducer, initialState, applyMiddleware(thunk));
