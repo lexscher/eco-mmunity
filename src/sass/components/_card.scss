@@ -1,0 +1,39 @@
+[class*='card'] {
+  width: 70%;
+  max-height: $card-height;
+  padding: 1.5rem;
+  background: $color-white;
+  border-left: solid $border-width $color-secondary-dark;
+  margin: 2em 1em;
+  border-radius: .2rem;
+  box-shadow:  .15rem .25rem .9rem $color-tertiary-light;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: .3s;
+
+  &:hover{
+    box-shadow: .25rem .45rem .9rem $color-tertiary-dark;
+  }
+
+  div.post-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  p.post-info__content {
+    max-height: $card-height - 10rem;
+    width: inherit;
+    display: block;
+  }
+
+  div.post-info-extra {
+    margin-top: 1rem;
+    width: inherit;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}
