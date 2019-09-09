@@ -17,10 +17,11 @@ class App extends Component {
     return (
       <Switch>
         <header className="header">
-          <h4>Eco-mmunity</h4>
+          <h1>Eco-mmunity</h1>
           <ListCommunities />
           <NavBar />
         </header>
+        <div className="app">
         <Route
           exact
           path="/"
@@ -32,7 +33,6 @@ class App extends Component {
         />
         {/* user */}
         <Route
-          
           path="/user/:username"
           render={routerProps => <Profile {...routerProps} />}
         />
@@ -72,6 +72,7 @@ class App extends Component {
           path="/eco/:community/comments/:postId/:postSlug/edit"
           render={routerProps => <Dashboard {...routerProps} />}
         />
+        </div>
       </Switch>
     );
   }
