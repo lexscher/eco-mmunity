@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { pageActions, userActions, communityActions } from '../redux/actions';
+import { pageActions, userActions, communityActions, postActions } from '../redux/actions';
 
 class NavBar extends Component {
+
+  resetCurrent = () => {
+    this.props.resetCurrentCommunity()
+    this.props.resetCurrentPost()
+    this.props.changePage('default')
+  }
   render() {
     return (
       <nav className="nav-bar">
-        <Link to="/" onClick={() => this.props.changePage('default')} onMouseUp={() => this.props.resetCurrentCommunity()}>
+        <Link to="/" onMouseUp={() => this.resetCurrent()}>
           Home
         </Link>
         {this.props.loggedIn ? (
@@ -37,7 +43,8 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = {
   changePage: pageActions.changePage,
   signOut: userActions.signOut,
-  resetCurrentCommunity: communityActions.resetCurrentCommunity
+  resetCurrentCommunity: communityActions.resetCurrentCommunity,
+  resetCurrentPost: postActions.resetCurrentPost
 };
 
 export default connect(
