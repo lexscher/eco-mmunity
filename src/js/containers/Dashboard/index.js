@@ -21,6 +21,7 @@ class Dashboard extends Component {
     }
     return (
       <div className="dash">
+        <div className="single-post-container"></div>
         {this.props.pageState == 'assimilation' ? (
           <Form />
         ) : (
