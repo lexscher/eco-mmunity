@@ -7,7 +7,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="nav-bar">
-        <Link to="/" onClick={() => this.props.changePage('default')}>
+        <Link to="/" onClick={() => this.props.changePage('default')} onMouseUp={() => this.props.resetCurrentCommunity()}>
           Home
         </Link>
         {this.props.loggedIn ? (
