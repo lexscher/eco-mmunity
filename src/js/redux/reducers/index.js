@@ -106,6 +106,9 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_COMMENT':
       return { ...state, comments: [...action.payload] };
+    // currentComments
+    case 'SET_CURRENT_COMMENTS':
+      return { ...state, currentComments: [...action.payload] };
     /*/ ------------ JOINED COMMUNITY (Logged In User - "Joined/Favorited"  - Community) ------------ /*/
     /*/ ------------ VOTED POST (Logged In User - "Vote"  - Post) ------------ /*/
     /*/ ------------ VOTED COMMENT (Logged In User - "Vote"  - Comment) ------------ /*/
