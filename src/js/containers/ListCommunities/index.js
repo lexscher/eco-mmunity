@@ -13,14 +13,12 @@ class ListCommunities extends Component {
   }
 
   scrollDropDown = event => {
+    console.log(event.currentTarget.clientY);
     // if client y greater than 200 scroll down
-    if (event.clientY > 200 ) {
-      event.currentTarget.scrollTo(event.clientX, event.clientY + 5 )
-      // if client y less than 100 scroll up
-    } else if( event.clientY < 100 ) {
-      event.currentTarget.scrollTo(event.clientX, event.clientY - 5 )
+    if (event.clientY > 200) {
+      event.currentTarget.scrollTo(event.clientX, event.clientY + 5);
     }
-  }
+  };
 
   showList = () => this.setState({ showList: true });
   hideList = () => this.setState({ showList: false });
@@ -47,12 +45,17 @@ class ListCommunities extends Component {
       </Link>
     ));
     return (
-      <div className="dropdown" onMouseEnter={this.showList} onMouseLeave={this.hideList}>
-        <h3 className="dropdown-toggler">
-          Communities
-        </h3>
+      <div
+        className="dropdown"
+        onMouseEnter={this.showList}
+        onMouseLeave={this.hideList}
+      >
+        <h3 className="dropdown-toggler">Communities</h3>
         {this.state.showList ? (
-          <div className="community-list-container dropdown-content" onMouseMove={this.scrollDropDown}>
+          <div
+            className="community-list-container dropdown-content"
+            onMouseMove={this.scrollDropDown}
+          >
             {allCommunities}
             {communities}
           </div>
