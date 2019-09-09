@@ -14,5 +14,11 @@ const ListPosts = ({ postList }) => {
   return <Fragment>{postsList}</Fragment>;
 };
 
+const mapStateToProps = state => state;
 
-export default ListPosts;
+const mapDispatchToProps = {
+  setCurrentPost: postActions.setCurrentPost,
+  resetCurrentPost: postActions.resetCurrentPost
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListPosts);
