@@ -2,12 +2,18 @@ import React, { Component } from 'react';
 import ListPosts from '../ListPosts';
 import Form from '../Forms';
 import Community from '../../presentational/Community';
+import Post from '../../presentational/Post';
 import { connect } from 'react-redux';
-import { communityActions, postActions } from '../../redux/actions';
+import { communityActions, postActions, commentActions } from '../../redux/actions';
 
 class Dashboard extends Component {
   componentDidMount() {
+    this.loadAll();
+  }
+
+  loadAll = () => {
     this.props.loadPosts();
+    this.props.loadComments();
   }
 
   render() {
@@ -21,7 +27,7 @@ class Dashboard extends Component {
     }
     return (
       <div className="dash">
-        <div className="single-post-container"></div>
+        {this.props.currentPost.id ? (<div className="single-post-container modal"><Post/></div>) : ''}
         {this.props.pageState == 'assimilation' ? (
           <Form />
         ) : (
@@ -59,7 +65,9 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   loadCommunites: communityActions.loadCommunities,
-  loadPosts: postActions.loadPosts
+  loadPosts: postActions.loadPosts,
+  loadComments: commentActions.loadComments,
+  resetCurrentPost: postActions.resetCurrentPost
 };
 
 export default connect(
