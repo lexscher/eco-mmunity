@@ -1,0 +1,14 @@
+.modal {
+  display: block;
+  position: absolute;
+  align-self: center;
+  background-color: #f1f1f1;
+  height: 50rem;
+  width: 70rem;
+  border-left: solid $border-width $color-secondary-light;
+  border-radius: .2rem;
+  z-index: 2;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
