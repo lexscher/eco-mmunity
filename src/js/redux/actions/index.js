@@ -144,7 +144,7 @@ communityActions.setCurrentCommunity = community => dispatch => {
 communityActions.resetCurrentCommunity = () => dispatch => {
   dispatch({
     type: 'RESET_CURRENT_COMMUNITY',
-    payload: { name: null }
+    payload: { id: null }
   });
 };
 
@@ -158,7 +158,7 @@ postActions.loadPosts = () => dispatch => {
       // Dispatch new action.
       dispatch({
         type: 'SET_POSTS',
-        payload: posts
+        payload: posts['data']
       });
     })
     .catch(issues => {
@@ -170,17 +170,31 @@ postActions.loadPosts = () => dispatch => {
     });
 };
 
+postActions.setCurrentPost = post => dispatch => {
+  dispatch({
+    type: 'SET_CURRENT_POST',
+    payload: post
+  });
+};
+
+postActions.resetCurrentPost = () => dispatch => {
+  dispatch({
+    type: 'RESET_CURRENT_POST',
+    payload: { id: null }
+  });
+};
+
 // COMMENT ACTIONS ---------------------------------------------------------------------------------------------
-commentActions.loadPosts = () => dispatch => {
+commentActions.loadComments = () => dispatch => {
   // Fetch ALL Posts
   fetch(`${BASE_URL}/comments`)
     // Parse response into JSON
     .then(res => res.json())
-    .then(posts => {
+    .then(comments => {
       // Dispatch new action.
       dispatch({
         type: 'SET_COMMENTS',
-        payload: posts
+        payload: comments['data']
       });
     })
     .catch(issues => {
@@ -192,6 +206,20 @@ commentActions.loadPosts = () => dispatch => {
     });
 };
 
+commentActions.setCurrentComments = comments => dispatch => {
+  // Sets the current comments to the array of comments passed down by "currentPost"
+  dispatch({
+    type: 'SET_CURRENT_COMMENTS',
+    payload: comments
+  });
+};
+
+commentActions.resetCurrentComments = () => dispatch => {
+  dispatch({
+    type: 'RESET_CURRENT_COMMENTS',
+    payload: []
+  });
+};
 // PAGE ACTIONS ---------------------------------------------------------------------------------------------
 pageActions.changePage = page => dispatch => {
   dispatch({

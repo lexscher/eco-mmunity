@@ -2,25 +2,32 @@ import React, { Component } from 'react';
 import ListPosts from '../ListPosts';
 import Form from '../Forms';
 import Community from '../../presentational/Community';
+import Post from '../../presentational/Post';
 import { connect } from 'react-redux';
-import { communityActions, postActions } from '../../redux/actions';
+import { communityActions, postActions, commentActions } from '../../redux/actions';
 
 class Dashboard extends Component {
   componentDidMount() {
+    this.loadAll();
+  }
+
+  loadAll = () => {
     this.props.loadPosts();
+    this.props.loadComments();
   }
 
   render() {
     let postList = [];
     if (this.props.currentCommunity.name) {
       postList = this.props.posts.filter(
-        post => post.community_id == this.props.currentCommunity.id
+        post => post.attributes.community.id == this.props.currentCommunity.id
       );
     } else {
       postList = this.props.posts;
     }
     return (
       <div className="dash">
+        {this.props.currentPost.id ? (<div className="single-post-container modal"><Post/></div>) : ''}
         {this.props.pageState == 'assimilation' ? (
           <Form />
         ) : (
@@ -39,7 +46,7 @@ class Dashboard extends Component {
             <div key={1} className="list-posts-container">
               {this.props.postsLoaded ? (
                 postList.length > 0 ? (
-                  <ListPosts posts={postList} />
+                  <ListPosts postList={postList} />
                 ) : (
                   <h1>Sorry! There aren't any posts in this community yet.</h1>
                 )
@@ -58,7 +65,9 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   loadCommunites: communityActions.loadCommunities,
-  loadPosts: postActions.loadPosts
+  loadPosts: postActions.loadPosts,
+  loadComments: commentActions.loadComments,
+  resetCurrentPost: postActions.resetCurrentPost
 };
 
 export default connect(

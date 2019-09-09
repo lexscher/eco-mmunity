@@ -88,6 +88,12 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_POST':
       return { ...state, posts: [...action.payload] };
+    // SET CURRENT POST to what the user has selected
+    case 'SET_CURRENT_POST':
+      return { ...state, currentPost: { ...action.payload } };
+    // RESET CURRENT POST, show all posts again
+    case 'RESET_CURRENT_POST':
+      return { ...state, currentPost: { ...action.payload } };
     /*/ ------------ COMMENT REDUCERS ------------ /*/
     case 'SET_COMMENTS':
       return { ...state, commentsLoaded: true, comments: [...action.payload] };
@@ -100,6 +106,12 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_COMMENT':
       return { ...state, comments: [...action.payload] };
+    // currentComments
+    case 'SET_CURRENT_COMMENTS':
+      return { ...state, currentComments: [...action.payload] };
+    // Reset Current Comments
+    case 'RESET_CURRENT_COMMENTS':
+      return { ...state, currentComments: [...action.payload] };
     /*/ ------------ JOINED COMMUNITY (Logged In User - "Joined/Favorited"  - Community) ------------ /*/
     /*/ ------------ VOTED POST (Logged In User - "Vote"  - Post) ------------ /*/
     /*/ ------------ VOTED COMMENT (Logged In User - "Vote"  - Comment) ------------ /*/

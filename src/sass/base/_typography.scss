@@ -11,6 +11,11 @@ body {
   }
 }
 
+.main {
+  height: inherit;
+  width: inherit;
+}
+
 nav.nav-bar {
   display: flex;
 
