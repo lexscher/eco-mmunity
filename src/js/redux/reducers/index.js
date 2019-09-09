@@ -88,6 +88,12 @@ export default (state, action) => {
     // Delete (DELETE)
     case 'DELETE_POST':
       return { ...state, posts: [...action.payload] };
+    // SET CURRENT POST to what the user has selected
+    case 'SET_CURRENT_POST':
+      return { ...state, currentPost: { ...action.payload } };
+    // RESET CURRENT POST, show all posts again
+    case 'RESET_CURRENT_POST':
+      return { ...state, currentPost: { ...action.payload } };
     /*/ ------------ COMMENT REDUCERS ------------ /*/
     case 'SET_COMMENTS':
       return { ...state, commentsLoaded: true, comments: [...action.payload] };
