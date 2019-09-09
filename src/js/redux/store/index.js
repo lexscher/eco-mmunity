@@ -19,6 +19,7 @@ const initialState = {
   currentCommunity: { name: null },
   posts: [],
   postsLoaded: false,
+  currentPost: { content: null },
   comments: [],
   commentsLoaded: false
 };
