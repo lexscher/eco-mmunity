@@ -144,7 +144,7 @@ communityActions.setCurrentCommunity = community => dispatch => {
 communityActions.resetCurrentCommunity = () => dispatch => {
   dispatch({
     type: 'RESET_CURRENT_COMMUNITY',
-    payload: { name: null }
+    payload: { id: null }
   });
 };
 
@@ -180,21 +180,21 @@ postActions.setCurrentPost = post => dispatch => {
 postActions.resetCurrentPost = () => dispatch => {
   dispatch({
     type: 'RESET_CURRENT_POST',
-    payload: { content: null }
+    payload: { id: null }
   });
 };
 
 // COMMENT ACTIONS ---------------------------------------------------------------------------------------------
-commentActions.loadPosts = () => dispatch => {
+commentActions.loadComments = () => dispatch => {
   // Fetch ALL Posts
   fetch(`${BASE_URL}/comments`)
     // Parse response into JSON
     .then(res => res.json())
-    .then(posts => {
+    .then(comments => {
       // Dispatch new action.
       dispatch({
         type: 'SET_COMMENTS',
-        payload: posts
+        payload: comments["data"]
       });
     })
     .catch(issues => {
