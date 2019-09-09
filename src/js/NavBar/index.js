@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { pageActions, userActions, communityActions, postActions } from '../redux/actions';
+import {
+  pageActions,
+  userActions,
+  communityActions,
+  postActions,
+  commentActions
+} from '../redux/actions';
 
 class NavBar extends Component {
-
   resetCurrent = () => {
-    this.props.resetCurrentCommunity()
-    this.props.resetCurrentPost()
-    this.props.changePage('default')
-  }
+    this.props.resetCurrentCommunity();
+    this.props.resetCurrentPost();
+    this.props.resetCurrentComments();
+    this.props.changePage('default');
+  };
   render() {
     return (
       <nav className="nav-bar">
@@ -44,7 +50,8 @@ const mapDispatchToProps = {
   changePage: pageActions.changePage,
   signOut: userActions.signOut,
   resetCurrentCommunity: communityActions.resetCurrentCommunity,
-  resetCurrentPost: postActions.resetCurrentPost
+  resetCurrentPost: postActions.resetCurrentPost,
+  resetCurrentComments: commentActions.resetCurrentComments
 };
 
 export default connect(
