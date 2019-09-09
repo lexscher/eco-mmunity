@@ -12,7 +12,8 @@ class ListCommunities extends Component {
     this.props.loadCommunities();
   }
 
-  toggleShowList = () => this.setState({ showList: !this.state.showList });
+  showList = () => this.setState({ showList: true });
+  hideList = () => this.setState({ showList: false });
 
   render() {
     let allCommunities = (
@@ -36,14 +37,12 @@ class ListCommunities extends Component {
       </Link>
     ));
     return (
-      <div>
-        <div onClick={this.toggleShowList}>
-          {this.props.currentCommunity.name
-            ? this.props.currentCommunity.name
-            : 'Communities'}
-        </div>
+      <div className="dropdown" onMouseEnter={this.showList} onMouseLeave={this.hideList}>
+        <h3 className="dropdown-toggler">
+          Communities
+        </h3>
         {this.state.showList ? (
-          <div className="community-list-container">
+          <div className="community-list-container dropdown-content">
             {allCommunities}
             {communities}
           </div>
