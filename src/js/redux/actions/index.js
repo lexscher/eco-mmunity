@@ -158,7 +158,7 @@ postActions.loadPosts = () => dispatch => {
       // Dispatch new action.
       dispatch({
         type: 'SET_POSTS',
-        payload: posts
+        payload: posts["data"]
       });
     })
     .catch(issues => {
