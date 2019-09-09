@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import Post from '../../presentational/Post';
 
 // Clicking on one of these list items will
 // dispatch the action to get the current post,
