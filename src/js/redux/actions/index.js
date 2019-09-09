@@ -158,7 +158,7 @@ postActions.loadPosts = () => dispatch => {
       // Dispatch new action.
       dispatch({
         type: 'SET_POSTS',
-        payload: posts["data"]
+        payload: posts['data']
       });
     })
     .catch(issues => {
@@ -194,7 +194,7 @@ commentActions.loadComments = () => dispatch => {
       // Dispatch new action.
       dispatch({
         type: 'SET_COMMENTS',
-        payload: comments["data"]
+        payload: comments['data']
       });
     })
     .catch(issues => {
@@ -204,6 +204,14 @@ commentActions.loadComments = () => dispatch => {
         issues
       });
     });
+};
+
+commentActions.setCurrentComments = comments => dispatch => {
+  // Sets the current comments to the array of comments passed down by "currentPost"
+  dispatch({
+    type: 'SET_CURRENT_COMMENTS',
+    payload: comments
+  });
 };
 
 // PAGE ACTIONS ---------------------------------------------------------------------------------------------
