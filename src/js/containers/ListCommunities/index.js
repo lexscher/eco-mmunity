@@ -12,6 +12,16 @@ class ListCommunities extends Component {
     this.props.loadCommunities();
   }
 
+  scrollDropDown = event => {
+    // if client y greater than 200 scroll down
+    if (event.clientY > 200 ) {
+      event.currentTarget.scrollTo(event.clientX, event.clientY + 5 )
+      // if client y less than 100 scroll up
+    } else if( event.clientY < 100 ) {
+      event.currentTarget.scrollTo(event.clientX, event.clientY - 5 )
+    }
+  }
+
   showList = () => this.setState({ showList: true });
   hideList = () => this.setState({ showList: false });
 
@@ -42,7 +52,7 @@ class ListCommunities extends Component {
           Communities
         </h3>
         {this.state.showList ? (
-          <div className="community-list-container dropdown-content">
+          <div className="community-list-container dropdown-content" onMouseMove={this.scrollDropDown}>
             {allCommunities}
             {communities}
           </div>
