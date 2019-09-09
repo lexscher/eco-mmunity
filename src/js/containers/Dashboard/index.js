@@ -14,7 +14,7 @@ class Dashboard extends Component {
     let postList = [];
     if (this.props.currentCommunity.name) {
       postList = this.props.posts.filter(
-        post => post.community_id == this.props.currentCommunity.id
+        post => post.attributes.community.id == this.props.currentCommunity.id
       );
     } else {
       postList = this.props.posts;
