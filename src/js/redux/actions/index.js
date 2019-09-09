@@ -214,6 +214,12 @@ commentActions.setCurrentComments = comments => dispatch => {
   });
 };
 
+commentActions.resetCurrentComments = () => dispatch => {
+  dispatch({
+    type: 'RESET_CURRENT_COMMENTS',
+    payload: []
+  });
+};
 // PAGE ACTIONS ---------------------------------------------------------------------------------------------
 pageActions.changePage = page => dispatch => {
   dispatch({
