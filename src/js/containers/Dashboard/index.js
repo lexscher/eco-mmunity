@@ -39,7 +39,7 @@ class Dashboard extends Component {
             <div key={1} className="list-posts-container">
               {this.props.postsLoaded ? (
                 postList.length > 0 ? (
-                  <ListPosts posts={postList} />
+                  <ListPosts postList={postList} />
                 ) : (
                   <h1>Sorry! There aren't any posts in this community yet.</h1>
                 )
