@@ -1,5 +1,5 @@
 // Set URL
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:3000';
 
 // Create base for actions
 export const userActions = {};
@@ -221,24 +221,25 @@ commentActions.resetCurrentComments = () => dispatch => {
   });
 };
 
-commentActions.createComment = content => dispatch => {
+commentActions.createComment = (content, post_id) => dispatch => {
   fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
-      'content-type': 'application/json',
+      'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: localStorage.token
     },
-    body: JSON.stringify(content)
+    body: JSON.stringify({ content, post_id })
   })
     .then(res => res.json())
     .then(comment => {
       dispatch({
-        action: 'CREATE_COMMENT',
-        payload: comment
+        type: 'CREATE_COMMENT',
+        payload: comment["data"]
       });
     })
     .catch(issues => {
+      console.log("ISSUES")
       // Handle our errors
       dispatch({
         type: 'POST_REQUEST_FAILED',
