@@ -112,6 +112,17 @@ export default (state, action) => {
     // Reset Current Comments
     case 'RESET_CURRENT_COMMENTS':
       return { ...state, currentComments: [...action.payload] };
+
+    /*/ ------------ HANDLE FAILED REQUESTS ------------ /*/
+    case 'GET_REQUEST_FAILED':
+      return alert(action.issues);
+    case 'POST_REQUEST_FAILED':
+      return alert(action.issues);
+    case 'PATCH_REQUEST_FAILED':
+      return alert(action.issues);
+    case 'DELETE_REQUEST_FAILED':
+      return alert(action.issues);
+
     /*/ ------------ JOINED COMMUNITY (Logged In User - "Joined/Favorited"  - Community) ------------ /*/
     /*/ ------------ VOTED POST (Logged In User - "Vote"  - Post) ------------ /*/
     /*/ ------------ VOTED COMMENT (Logged In User - "Vote"  - Comment) ------------ /*/
