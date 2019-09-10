@@ -4,11 +4,12 @@
   align-self: center;
   background-color: #f1f1f1;
   height: 50rem;
-  width: 70rem;
-  border-left: solid $border-width $color-secondary-light;
+  width: 75rem;
+  border-left: solid $border-width $color-black;
   border-radius: .2rem;
   z-index: 2;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: .1rem 1rem;
   overflow: scroll;
   scroll-behavior: smooth;
 }
