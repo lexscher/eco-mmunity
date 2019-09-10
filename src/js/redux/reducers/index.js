@@ -99,7 +99,7 @@ export default (state, action) => {
       return { ...state, commentsLoaded: true, comments: [...action.payload] };
     // Creation (POST)
     case 'CREATE_COMMENT':
-      return { ...state, comments: [...action.payload] };
+      return { ...state, comments: [state.comments, ...action.payload] };
     // Edit (PUT/PATCH)
     case 'EDIT_COMMENT':
       return { ...state, comments: [...action.payload] };
