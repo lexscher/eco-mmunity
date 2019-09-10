@@ -8,7 +8,7 @@ export default props => {
       <p>{content}</p>
       <p>{user.username}</p>
       <p>
-        {votes.count} {votes.count !== 1 ? 'votes' : 'vote'}
+        {votes.length} {votes.length !== 1 ? 'votes' : 'vote'}
       </p>
     </div>
   );
