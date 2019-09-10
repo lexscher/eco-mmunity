@@ -226,25 +226,26 @@ commentActions.createComment = content => dispatch => {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      'Accept': 'application/json',
+      Accept: 'application/json',
       Authorization: localStorage.token
     },
     body: JSON.stringify(content)
-  }).then(res => res.json())
-  .then(comment => {
-    dispatch({
-      action: 'CREATE_COMMENT',
-      payload: comment
-    })
   })
-  .catch(issues => {
-    // Handle our errors
-    dispatch({
-      type: 'POST_REQUEST_FAILED',
-      issues
+    .then(res => res.json())
+    .then(comment => {
+      dispatch({
+        action: 'CREATE_COMMENT',
+        payload: comment
+      });
+    })
+    .catch(issues => {
+      // Handle our errors
+      dispatch({
+        type: 'POST_REQUEST_FAILED',
+        issues
+      });
     });
-  });
-}
+};
 // PAGE ACTIONS ---------------------------------------------------------------------------------------------
 pageActions.changePage = page => dispatch => {
   dispatch({
