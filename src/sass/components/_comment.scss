@@ -1,0 +1,11 @@
+.comment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-top: solid .2rem $color-black;
+  border-bottom: solid .2rem $color-black;
+
+  &:not(:last-child) {
+    margin-bottom: .5rem;
+  }
+}
