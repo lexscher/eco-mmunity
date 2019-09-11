@@ -81,7 +81,7 @@ export default (state, action) => {
       return { ...state, postsLoaded: true, posts: [...action.payload] };
     // Creation (POST)
     case 'CREATE_POST':
-      return { ...state, posts: [...action.payload] };
+      return { ...state, posts: [...state.posts, action.payload] };
     // Edit (PUT/PATCH)
     case 'EDIT_POST':
       return { ...state, posts: [...action.payload] };

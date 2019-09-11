@@ -198,6 +198,33 @@ postActions.resetCurrentPost = () => dispatch => {
   });
 };
 
+postActions.createPost = (title, content, community_id) => dispatch => {
+  fetch(`${BASE_URL}/posts`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    },
+    body: JSON.stringify({ title, content, community_id })
+  })
+    .then(res => res.json())
+    .then(post => {
+      dispatch({
+        type: 'CREATE_POST',
+        payload: post['data']
+      });
+    })
+    .catch(issues => {
+      console.log('ISSUES');
+      // Handle our errors
+      dispatch({
+        type: 'POST_REQUEST_FAILED',
+        issues
+      });
+    });
+};
+
 // COMMENT ACTIONS ---------------------------------------------------------------------------------------------
 commentActions.loadComments = () => dispatch => {
   // Fetch ALL Posts
