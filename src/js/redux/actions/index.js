@@ -177,6 +177,20 @@ postActions.setCurrentPost = post => dispatch => {
   });
 };
 
+postActions.reloadCurrentPost = post_id => dispatch => {
+  fetch(`${BASE_URL}/posts/${post_id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    }
+  })
+    .then(res => res.json())
+    .then(post => {
+      postActions.setCurrentPost(post['data']);
+    });
+};
+
 postActions.resetCurrentPost = () => dispatch => {
   dispatch({
     type: 'RESET_CURRENT_POST',
@@ -235,11 +249,11 @@ commentActions.createComment = (content, post_id) => dispatch => {
     .then(comment => {
       dispatch({
         type: 'CREATE_COMMENT',
-        payload: comment["data"]
+        payload: comment['data']
       });
     })
     .catch(issues => {
-      console.log("ISSUES")
+      console.log('ISSUES');
       // Handle our errors
       dispatch({
         type: 'POST_REQUEST_FAILED',
