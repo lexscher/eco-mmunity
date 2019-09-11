@@ -1,23 +1,45 @@
 import React, { Component } from 'react';
-import LogIn from './LogIn'
-import Register from './Register'
+import LogIn from './LogIn';
+import Register from './Register';
+import { connect } from 'react-redux';
+import { pageActions } from '../../redux/actions';
 
-
-export default class Form extends Component{
+class Form extends Component {
   state = {
     loggingIn: true
-  }
+  };
 
   toggleFormState = event => {
-    this.setState({ loggingIn: !this.state.loggingIn })
-  }
+    this.setState({ loggingIn: !this.state.loggingIn });
+  };
 
   render() {
-    return(
-    <div className="form-container">
-      { this.state.loggingIn ? (<LogIn />):(<Register />) }
-      <button onClick={this.toggleFormState}>{ this.state.loggingIn ? ("Don't have an account? Register Here!"):("Already have an account? Log In Here!") }</button>
-    </div>
-    )
+    return (
+      <div className="form-container">
+        <p
+          className="form-container--exit-btn"
+          onClick={() => this.props.changePage()}
+        >
+          x
+        </p>
+        {this.state.loggingIn ? <LogIn /> : <Register />}
+        <button onClick={this.toggleFormState}>
+          {this.state.loggingIn
+            ? "Don't have an account? Register Here!"
+            : 'Already have an account? Log In Here!'}
+        </button>
+      </div>
+    );
   }
 }
+
+const mapStateToProps = state => state;
+
+const mapDispatchToProps = {
+  changePage: pageActions.changePage
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Form);
