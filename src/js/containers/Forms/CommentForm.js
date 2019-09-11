@@ -7,26 +7,7 @@ class CommentForm extends Component {
   state = {
     content: ''
   };
-  // const { handleSubmit, handleInputChange, inputs } = useForm(
-  //   createThatComment
-  // );
-  // function createThatComment() {
-  //   const { comment } = inputs;
-  //   props.createComment(comment, props.currentPost.id);
-  // }
-  // // Return valid login form, but only if the user's logged in.
-  // let handleSubmitPlus = event => {
-  //   handleSubmit(event);
-  //   function resetForm(event) {
-  //     event.target.reset();
-  //   }
-  //   function callPostSetter(callback, param) {
-  //     if (callback instanceof Function && param.id) callback(param);
-  //   }
-  //   props.setCurrentPost(props.currentPost);
-  //   setTimeout(resetForm(event), 1350);
-  //   setTimeout(() => callPostSetter(props.setCurrentPost, props.currentPost), 300);
-  // };
+
   handleChange = event => {
     let { name, value } = event.target;
     this.setState({ [name]: value });

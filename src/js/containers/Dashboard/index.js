@@ -43,7 +43,6 @@ class Dashboard extends Component {
         ) : (
           [
             <div key={0} className="side-bar">
-              {/* If  */}
               {this.props.currentCommunity.name ? (
                 <Community
                   name={this.props.currentCommunity.name}
