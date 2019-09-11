@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Comment from '../Comment';
 import CommentForm from '../../containers/Forms/CommentForm';
+import { postActions } from '../../redux/actions';
 
 // This will be the modal view
 class Post extends Component {
@@ -17,7 +18,13 @@ class Post extends Component {
       <Comment key={comment.id} comment={comment} />
     ));
     return (
-      <div className="post--view single-post">
+      <div className="show-post">
+        <div className="show-post__controls">
+          <p>'./eco/{community.name}'</p>
+          <p className="show-post--exit-btn" onClick={this.props.resetCurrentPost}>
+            x
+          </p>
+        </div>
         <h1>{title}</h1>
         <p>{content}</p>
         <CommentForm postId={this.props.currentPost.id} />
@@ -33,4 +40,11 @@ class Post extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(Post);
+const mapDispatchToProps = {
+  resetCurrentPost: postActions.resetCurrentPost
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post);
