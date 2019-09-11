@@ -45,7 +45,7 @@ class ListPosts extends Component {
         </div>
       );
     });
-    return <Fragment>{postsList}</Fragment>;
+    return <Fragment>{postsList.reverse()}</Fragment>;
   }
 }
 
