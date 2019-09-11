@@ -53,6 +53,8 @@ class CommentForm extends Component {
     setTimeout(reset(event), 5050);
   };
 
+  stopConsoleFromGettingAngry = () => 'Smile';
+
   createForm = () => (
     <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
       <textarea
@@ -60,6 +62,7 @@ class CommentForm extends Component {
         name="content"
         placeholder="Write a comment!"
         value={this.state.content}
+        onChange={this.stopConsoleFromGettingAngry}
         required
       />
       <button type="submit">Post Comment!</button>
@@ -67,7 +70,7 @@ class CommentForm extends Component {
     </form>
   );
 
-  commentModeOff = () => this.setState({ commentMode: false });
+  commentModeOff = () => this.setState({ commentMode: false, content: '' });
   commentModeOn = () => this.setState({ commentMode: true });
 
   render() {

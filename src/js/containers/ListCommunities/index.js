@@ -13,7 +13,6 @@ class ListCommunities extends Component {
   }
 
   scrollDropDown = event => {
-    console.log(event.currentTarget.clientY);
     // if client y greater than 200 scroll down
     if (event.clientY > 200) {
       event.currentTarget.scrollTo(event.clientX, event.clientY + 5);
@@ -36,7 +35,8 @@ class ListCommunities extends Component {
     );
     let communities = this.props.communities.map(community => (
       <Link
-        to={`/eco/${community.name}`}
+        // to={`/eco/${community.name}`}
+        to="/"
         key={community.name}
         className="community-list-item"
         onClick={() => this.props.setCurrentCommunity(community)}
