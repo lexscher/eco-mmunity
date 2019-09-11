@@ -39,32 +39,33 @@ class Dashboard extends Component {
           ''
         )}
         {this.props.pageState == 'assimilation' ? (
-          <Form />
+          <div className="assimilation-page modal">
+            <Form />
+          </div>
         ) : (
-          [
-            <div key={0} className="side-bar">
-              {this.props.currentCommunity.name ? (
-                <Community
-                  name={this.props.currentCommunity.name}
-                  description={this.props.currentCommunity.description}
-                />
-              ) : (
-                ''
-              )}
-            </div>,
-            <div key={1} className="list-posts-container">
-              {this.props.postsLoaded ? (
-                postList.length > 0 ? (
-                  <ListPosts postList={postList} />
-                ) : (
-                  <h1>Sorry! There aren't any posts in this community yet.</h1>
-                )
-              ) : (
-                'Please wait while we make things better for you... 🌱'
-              )}
-            </div>
-          ]
+          ''
         )}
+        <div key={0} className="side-bar">
+          {this.props.currentCommunity.name ? (
+            <Community
+              name={this.props.currentCommunity.name}
+              description={this.props.currentCommunity.description}
+            />
+          ) : (
+            ''
+          )}
+        </div>
+        <div key={1} className="list-posts-container">
+          {this.props.postsLoaded ? (
+            postList.length > 0 ? (
+              <ListPosts postList={postList} />
+            ) : (
+              <h1>Sorry! There aren't any posts in this community yet.</h1>
+            )
+          ) : (
+            'Please wait while we make things better for you... 🌱'
+          )}
+        </div>
       </div>
     );
   }
