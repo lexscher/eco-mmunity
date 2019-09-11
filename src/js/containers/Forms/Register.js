@@ -3,11 +3,12 @@ import useForm from './FormHooks';
 import { connect } from 'react-redux'
 import { userActions } from '../../redux/actions';
 
-const Register = () => {
+const Register = props => {
   const { handleSubmit, handleInputChange, inputs } = useForm(signThemUp);
 
   function signThemUp() {
-    const { firstName, lastName, username, email, password } = inputs
+    const { firstName, lastName, username, email, password, password2 } = inputs
+    if (password !== password2) return alert("Passwords Do Not Match");
     console.log("Dispatch Action to Register user");
     props.signUp(firstName, lastName, username, email, password)
   }
