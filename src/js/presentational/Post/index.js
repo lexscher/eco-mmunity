@@ -22,7 +22,7 @@ class Post extends Component {
         <div className="show-post__controls">
           <p>'./eco/{community.name}'</p>
           <p className="show-post--exit-btn" onClick={this.props.resetCurrentPost}>
-            x
+            close
           </p>
         </div>
         <h1>{title}</h1>

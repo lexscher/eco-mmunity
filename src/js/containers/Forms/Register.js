@@ -14,7 +14,8 @@ const Register = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} onChange={handleInputChange}>
+      <form onSubmit={handleSubmit} onChange={handleInputChange} className="assimilation-form">
+      <h3>Register</h3>
         <input
           type="text"
           name="firstName"
@@ -64,6 +65,7 @@ const Register = () => {
 };
 
 const mapStateToProps = state => state;
+// Put this method in the Modal ;/
 const mapDispatchToProps = {
   signUp: userActions.signUp
 };

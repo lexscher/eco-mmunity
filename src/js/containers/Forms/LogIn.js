@@ -12,7 +12,8 @@ const LogIn = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="assimilation-form">
+      <h3>Log In</h3>
         <input
           type="text"
           name="username"

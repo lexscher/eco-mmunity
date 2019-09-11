@@ -7,12 +7,16 @@ import { connect } from 'react-redux';
 import {
   communityActions,
   postActions,
-  commentActions
+  commentActions,
+  pageActions
 } from '../../redux/actions';
 
 class Dashboard extends Component {
   componentDidMount() {
     this.loadAll();
+  }
+  componentDidUpdate() {
+    if (this.props.loggedIn) this.props.changePage('default');
   }
 
   loadAll = () => {
@@ -39,32 +43,39 @@ class Dashboard extends Component {
           ''
         )}
         {this.props.pageState == 'assimilation' ? (
-          <Form />
+          <div className="assimilation-page modal">
+            <p
+              className="form-container--exit-btn"
+              onClick={() => this.props.changePage()}
+            >
+              close
+            </p>
+            <Form />
+          </div>
         ) : (
-          [
-            <div key={0} className="side-bar">
-              {this.props.currentCommunity.name ? (
-                <Community
-                  name={this.props.currentCommunity.name}
-                  description={this.props.currentCommunity.description}
-                />
-              ) : (
-                ''
-              )}
-            </div>,
-            <div key={1} className="list-posts-container">
-              {this.props.postsLoaded ? (
-                postList.length > 0 ? (
-                  <ListPosts postList={postList} />
-                ) : (
-                  <h1>Sorry! There aren't any posts in this community yet.</h1>
-                )
-              ) : (
-                'Please wait while we make things better for you... 🌱'
-              )}
-            </div>
-          ]
+          ''
         )}
+        <div key={0} className="side-bar">
+          {this.props.currentCommunity.name ? (
+            <Community
+              name={this.props.currentCommunity.name}
+              description={this.props.currentCommunity.description}
+            />
+          ) : (
+            ''
+          )}
+        </div>
+        <div key={1} className="list-posts-container">
+          {this.props.postsLoaded ? (
+            postList.length > 0 ? (
+              <ListPosts postList={postList} />
+            ) : (
+              <h1>Sorry! There aren't any posts in this community yet.</h1>
+            )
+          ) : (
+            'Please wait while we make things better for you... 🌱'
+          )}
+        </div>
       </div>
     );
   }
@@ -75,7 +86,8 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = {
   loadCommunites: communityActions.loadCommunities,
   loadPosts: postActions.loadPosts,
-  loadComments: commentActions.loadComments
+  loadComments: commentActions.loadComments,
+  changePage: pageActions.changePage
 };
 
 export default connect(
