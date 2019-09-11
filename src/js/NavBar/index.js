@@ -33,7 +33,7 @@ class NavBar extends Component {
           ]
         ) : (
           <Link
-            to="/assimilate"
+            to="/"
             onClick={() => this.props.changePage('assimilation')}
           >
             Log In
