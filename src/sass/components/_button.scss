@@ -1,0 +1,16 @@
+button {
+  margin: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
+  font-weight: 700;
+  border: solid 0.2rem $color-black;
+  border-radius: 3%;
+  transition: 1s;
+
+  &:focus {
+    outline: none !important;
+  }
+
+  &:not([disabled]) {
+    background-color: $color-tertiary-light;
+  }
+}
