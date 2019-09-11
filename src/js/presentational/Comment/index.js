@@ -1,15 +1,24 @@
 import React from 'react';
+import moment from 'moment';
 
 // Comment
 export default props => {
-  let { content, user, voters, votes } = props.comment.attributes;
+  let { content, user, voters, votes, created } = props.comment.attributes;
+  let createdAt = new Date(created);
+
   return (
     <div className="comment">
-      <p>{content}</p>
-      <p>{user.username}</p>
-      <p>
-        {votes.count} {votes.count !== 1 ? 'votes' : 'vote'}
-      </p>
+      <div className="comment--votes-container">
+        <p className="comment--votes__count">
+          {votes.length} {votes.length !== 1 ? 'votes' : 'vote'}
+        </p>
+      </div>
+      <div className="comment--content-container">
+        <p className="comment--content__username">
+          {user.username} <span className="icon">⌯</span> {`${moment(createdAt).fromNow()}`}
+        </p>
+        <p className="comment--content__body">{content}</p>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 // Set URL
-const BASE_URL = 'http://localhost:3000/';
+const BASE_URL = 'http://localhost:3000';
 
 // Create base for actions
 export const userActions = {};
@@ -177,6 +177,20 @@ postActions.setCurrentPost = post => dispatch => {
   });
 };
 
+postActions.reloadCurrentPost = post_id => dispatch => {
+  fetch(`${BASE_URL}/posts/${post_id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    }
+  })
+    .then(res => res.json())
+    .then(post => {
+      postActions.setCurrentPost(post['data']);
+    });
+};
+
 postActions.resetCurrentPost = () => dispatch => {
   dispatch({
     type: 'RESET_CURRENT_POST',
@@ -219,6 +233,33 @@ commentActions.resetCurrentComments = () => dispatch => {
     type: 'RESET_CURRENT_COMMENTS',
     payload: []
   });
+};
+
+commentActions.createComment = (content, post_id) => dispatch => {
+  fetch(`${BASE_URL}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: localStorage.token
+    },
+    body: JSON.stringify({ content, post_id })
+  })
+    .then(res => res.json())
+    .then(comment => {
+      dispatch({
+        type: 'CREATE_COMMENT',
+        payload: comment['data']
+      });
+    })
+    .catch(issues => {
+      console.log('ISSUES');
+      // Handle our errors
+      dispatch({
+        type: 'POST_REQUEST_FAILED',
+        issues
+      });
+    });
 };
 // PAGE ACTIONS ---------------------------------------------------------------------------------------------
 pageActions.changePage = page => dispatch => {

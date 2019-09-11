@@ -6,6 +6,8 @@ import { postActions, commentActions } from '../../redux/actions';
 // dispatch the action to get the current post,
 // as well as it's comments
 class ListPosts extends Component {
+
+
   render() {
     let { postList, setCurrentPost, setCurrentComments } = this.props;
     let postsList = postList.map(post => {

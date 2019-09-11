@@ -1,0 +1,32 @@
+.comment {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 0.15rem 0.25rem 0.9rem $color-tertiary-light;
+  margin: 2rem 1rem;
+  border-left: solid $border-width $color-tertiary;
+
+  [class$='votes-container'] {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    justify-content: start;
+    align-items: center;
+  }
+
+  [class$='content-container'] {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    [class$='username'] {
+      color: $color-tertiary-light;
+
+      .icon {
+        color: $color-black;
+      }
+    }
+  }
+}
