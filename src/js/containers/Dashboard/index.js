@@ -7,12 +7,16 @@ import { connect } from 'react-redux';
 import {
   communityActions,
   postActions,
-  commentActions
+  commentActions,
+  pageActions
 } from '../../redux/actions';
 
 class Dashboard extends Component {
   componentDidMount() {
     this.loadAll();
+  }
+  componentDidUpdate() {
+    if (this.props.loggedIn) this.props.changePage('default');
   }
 
   loadAll = () => {
@@ -40,6 +44,12 @@ class Dashboard extends Component {
         )}
         {this.props.pageState == 'assimilation' ? (
           <div className="assimilation-page modal">
+            <p
+              className="form-container--exit-btn"
+              onClick={() => this.props.changePage()}
+            >
+              close
+            </p>
             <Form />
           </div>
         ) : (
@@ -76,7 +86,8 @@ const mapStateToProps = state => state;
 const mapDispatchToProps = {
   loadCommunites: communityActions.loadCommunities,
   loadPosts: postActions.loadPosts,
-  loadComments: commentActions.loadComments
+  loadComments: commentActions.loadComments,
+  changePage: pageActions.changePage
 };
 
 export default connect(
