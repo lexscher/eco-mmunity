@@ -5,7 +5,8 @@ import { commentActions, postActions } from '../../redux/actions';
 
 class CommentForm extends Component {
   state = {
-    content: ''
+    content: '',
+    commentMode: false
   };
 
   handleChange = event => {
@@ -37,7 +38,7 @@ class CommentForm extends Component {
       let postComments = props.comments.filter(
         comment => comment.attributes.post.id == props.currentPost.id
       );
-      console.log(postComments)
+      console.log(postComments);
       props.setCurrentComments(postComments);
     };
     // Reset current post
@@ -52,35 +53,40 @@ class CommentForm extends Component {
     setTimeout(reset(event), 5050);
   };
 
+  createForm = () => (
+    <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+      <textarea
+        type="text"
+        name="content"
+        placeholder="Write a comment!"
+        value={this.state.content}
+        required
+      />
+      <button type="submit">Post Comment!</button>
+      <button onClick={this.commentModeOff}>cancel</button>
+    </form>
+  );
+
+  commentModeOff = () => this.setState({ commentMode: false });
+  commentModeOn = () => this.setState({ commentMode: true });
+
   render() {
     return (
       <div>
         {this.props.loggedIn ? (
-          <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
-            <input
-              type="text"
-              name="content"
-              placeholder="Write a comment!"
-              value={this.state.content}
-              required
-            />
-            <button type="submit">Post Comment!</button>
-          </form>
+          this.state.commentMode ? (
+            this.createForm()
+          ) : (
+            <button onClick={this.commentModeOn}> Write a comment! </button>
+          )
         ) : (
           <form
             onSubmit={event => {
               event.preventDefault();
             }}
           >
-            <input
-              type="text"
-              name="content"
-              placeholder="Log In to comment on this post!"
-              value={''}
-              required
-            />
             <button type="submit" disabled>
-              Post Comment!
+              Log In to comment on this post!
             </button>
           </form>
         )}
