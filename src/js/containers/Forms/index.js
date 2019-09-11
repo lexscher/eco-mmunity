@@ -16,12 +16,6 @@ class Form extends Component {
   render() {
     return (
       <div className="form-container">
-        <p
-          className="form-container--exit-btn"
-          onClick={() => this.props.changePage()}
-        >
-          x
-        </p>
         {this.state.loggingIn ? <LogIn /> : <Register />}
         <button onClick={this.toggleFormState}>
           {this.state.loggingIn
