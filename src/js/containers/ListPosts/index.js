@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { postActions, commentActions } from '../../redux/actions';
+import moment from 'moment';
 
 // Clicking on one of these list items will
 // dispatch the action to get the current post,
 // as well as it's comments
 class ListPosts extends Component {
-
-
   render() {
     let { postList, setCurrentPost, setCurrentComments } = this.props;
     let postsList = postList.map(post => {
@@ -18,11 +17,13 @@ class ListPosts extends Component {
         user,
         community,
         voters,
-        votes
+        votes,
+        created
       } = post.attributes;
       let postComments = this.props.comments.filter(
         comment => comment.attributes.post.id == post.id
       );
+      let createdAt = new Date(created);
       return (
         <div
           key={post.id}
@@ -39,7 +40,7 @@ class ListPosts extends Component {
               {comments.length} {comments.length !== 1 ? 'comments' : 'comment'}
             </p>
             <p className="post-info-extra__author">
-              by {user.username} in './eco/{community.name}'
+              by {user.username} in './eco/{community.name}' {`${moment(createdAt).fromNow()}`}
             </p>
           </div>
         </div>
