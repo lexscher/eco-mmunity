@@ -24,16 +24,25 @@ class NavBar extends Component {
         </Link>
         {this.props.loggedIn ? (
           [
-            <Link to={`/user/${this.props.currentUser.username}`} key={0}>
+            <Link
+              to={`/user/${this.props.currentUser.username}`}
+              key={0}
+              onMouseUp={() => this.resetCurrent()}
+            >
               {this.props.currentUser.username}
             </Link>,
-            <Link key={1} to="/" onClick={() => this.props.signOut()}>
+            <Link
+              key={1}
+              to="/"
+              onClick={() => this.props.signOut()}
+              onMouseUp={() => this.resetCurrent()}
+            >
               Log Out
             </Link>
           ]
         ) : (
           <Link
-            to="/"
+            to="/assimilate"
             onClick={() => this.props.changePage('assimilation')}
           >
             Log In
