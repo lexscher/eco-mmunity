@@ -35,8 +35,7 @@ class ListCommunities extends Component {
     );
     let communities = this.props.communities.map(community => (
       <Link
-        // to={`/eco/${community.name}`}
-        to="/"
+        to={`/eco/${community.name}`}
         key={community.name}
         className="community-list-item"
         onClick={() => this.props.setCurrentCommunity(community)}
