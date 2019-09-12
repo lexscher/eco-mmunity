@@ -13,8 +13,7 @@
   overflow: scroll;
   scroll-behavior: smooth;
 
-  animation: moveInBottom 0.2s ease-in;
-  animation: moveOutBottom 0.2s ease-out;
+  animation: moveInBottom 0.2s ease-in-out;
 
 
   p[class$='exit-btn'] {
