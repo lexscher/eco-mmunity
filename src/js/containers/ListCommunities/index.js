@@ -25,7 +25,7 @@ class ListCommunities extends Component {
   render() {
     let allCommunities = (
       <Link
-        to="/"
+        to="/eco-mmunity"
         key={`all`}
         className="community-list-item"
         onClick={() => this.props.resetCurrentCommunity()}
@@ -35,7 +35,7 @@ class ListCommunities extends Component {
     );
     let communities = this.props.communities.map(community => (
       <Link
-        to={`/eco/${community.name}`}
+        to={`/eco-mmunity/eco/${community.name}`}
         key={community.name}
         className="community-list-item"
         onClick={() => this.props.setCurrentCommunity(community)}
