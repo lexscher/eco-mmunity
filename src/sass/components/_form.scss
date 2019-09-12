@@ -16,11 +16,15 @@ form {
   }
 
   textarea {
-    width: 100%;
+    width: 99%;
     height: 12rem;
     resize: none;
     padding: 1rem 1.5rem;
     border: solid 0.2rem $color-black;
+  }
+
+  .create-post--input {
+    width: 50%;
   }
 }
 

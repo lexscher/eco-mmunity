@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import useForm from './FormHooks';
 import { connect } from 'react-redux';
-import { commentActions, postActions } from '../../redux/actions';
+import {
+  commentActions,
+  postActions,
+  communityActions
+} from '../../redux/actions';
 
-class CommentForm extends Component {
+class PostForm extends Component {
   state = {
+    title: '',
     content: '',
-    commentMode: false
+    postCreationMode: false
   };
 
   handleChange = event => {
@@ -15,42 +20,59 @@ class CommentForm extends Component {
   };
 
   handleSubmit = event => {
+    // Prevent default page reload action
     event.preventDefault();
 
+    // Set title, content, and community ID in order to create a post
+    let title = event.target.title.value;
     let content = event.target.content.value;
-    let postId = this.props.currentPost.id;
-    this.props.createComment(content, postId);
-    this.setState({ content: '' });
+    let communityId = this.props.currentCommunity.id;
+    this.props.createPost(title, content, communityId);
+    // Reset the form
+    let reset = event => {
+      this.setState({ title: '', content: '' });
+    };
+    setTimeout(reset(event), 5050);
   };
 
   stopConsoleFromGettingAngry = () => 'Smile';
 
   createForm = () => (
     <form onSubmit={this.handleSubmit} onChange={this.handleChange}>
+      <input
+        className="create-post--input"
+        type="text"
+        name="title"
+        placeholder="Title your Post!"
+        value={this.state.title}
+        onChange={this.stopConsoleFromGettingAngry}
+        required
+      />
       <textarea
         type="text"
         name="content"
-        placeholder="Write a comment!"
+        placeholder="Express yourself!"
         value={this.state.content}
         onChange={this.stopConsoleFromGettingAngry}
         required
       />
-      <button type="submit">Post Comment!</button>
-      <button onClick={this.commentModeOff}>cancel</button>
+      <button type="submit">Create a Post!</button>
+      <button onClick={this.postCreationModeOff}>cancel</button>
     </form>
   );
 
-  commentModeOff = () => this.setState({ commentMode: false, content: '' });
-  commentModeOn = () => this.setState({ commentMode: true });
+  postCreationModeOff = () =>
+    this.setState({ postCreationMode: false, title: '', content: '' });
+  postCreationModeOn = () => this.setState({ postCreationMode: true });
 
   render() {
     return (
       <div>
         {this.props.loggedIn ? (
-          this.state.commentMode ? (
+          this.state.postCreationMode ? (
             this.createForm()
           ) : (
-            <button onClick={this.commentModeOn}> Write a comment! </button>
+            <button onClick={this.postCreationModeOn}>Create a Post!</button>
           )
         ) : (
           <form
@@ -59,7 +81,7 @@ class CommentForm extends Component {
             }}
           >
             <button type="submit" disabled>
-              Log In to comment on this post!
+              Log In to post in './eco/{this.props.currentCommunity.name}'
             </button>
           </form>
         )}
@@ -77,10 +99,10 @@ const mapDispatchToProps = {
   reloadCurrentPost: postActions.reloadCurrentPost,
   loadComments: commentActions.loadComments,
   setCurrentComments: commentActions.setCurrentComments,
-  createComment: commentActions.createComment
+  createPost: postActions.createPost
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentForm);
+)(PostForm);

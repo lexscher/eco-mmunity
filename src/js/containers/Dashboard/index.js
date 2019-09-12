@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ListPosts from '../ListPosts';
-import Form from '../Forms';
+import Form from '../Forms/index.js';
+import PostForm from '../Forms/PostForm.js';
 import Community from '../../presentational/Community';
 import Post from '../../presentational/Post';
 import { connect } from 'react-redux';
@@ -15,14 +16,32 @@ class Dashboard extends Component {
   componentDidMount() {
     this.loadAll();
   }
+  loop = setInterval(() => this.loadAll(), 3000);
+
   componentDidUpdate() {
     if (this.props.loggedIn) this.props.changePage('default');
   }
 
+  componentWillUnmount() {
+    clearInterval(this.loop);
+  }
+
   loadAll = () => {
+    this.props.loadCommunities();
     this.props.loadPosts();
     this.props.loadComments();
+    if (this.props.currentPost.id) {
+      let postComments = this.props.comments.filter(
+        comment => comment.attributes.post.id == this.props.currentPost.id
+      );
+      console.log(postComments);
+      this.props.setCurrentComments(postComments);
+      this.props.reloadCurrentPost(this.props.currentPost.id);
+    }
   };
+
+  postCreationModeOn = () => this.setState({ postCreationMode: true });
+  postCreationModeOff = () => this.setState({ postCreationMode: false });
 
   render() {
     let postList = [];
@@ -57,10 +76,13 @@ class Dashboard extends Component {
         )}
         <div key={0} className="side-bar">
           {this.props.currentCommunity.name ? (
-            <Community
-              name={this.props.currentCommunity.name}
-              description={this.props.currentCommunity.description}
-            />
+            <Fragment>
+              <Community
+                name={this.props.currentCommunity.name}
+                description={this.props.currentCommunity.description}
+              />
+              <PostForm />
+            </Fragment>
           ) : (
             ''
           )}
@@ -84,10 +106,12 @@ class Dashboard extends Component {
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
-  loadCommunites: communityActions.loadCommunities,
+  loadCommunities: communityActions.loadCommunities,
   loadPosts: postActions.loadPosts,
   loadComments: commentActions.loadComments,
-  changePage: pageActions.changePage
+  changePage: pageActions.changePage,
+  reloadCurrentPost: postActions.reloadCurrentPost,
+  setCurrentComments: commentActions.setCurrentComments
 };
 
 export default connect(
