@@ -1,5 +1,5 @@
 // Set URL
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://eco-community-api.herokuapp.com';
 
 // Create base for actions
 export const userActions = {};
