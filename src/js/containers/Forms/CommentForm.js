@@ -20,37 +20,7 @@ class CommentForm extends Component {
     let content = event.target.content.value;
     let postId = this.props.currentPost.id;
     this.props.createComment(content, postId);
-    let reset = event => {
-      this.setState({ content: '' });
-    };
-
-    // Reload all comments
-    let helpComments = props => {
-      props.loadComments();
-    };
-    // Reload all posts
-    let helpPosts = props => {
-      props.loadPosts();
-    };
-
-    // Reset current comments
-    let helpCurrentComments = props => {
-      let postComments = props.comments.filter(
-        comment => comment.attributes.post.id == props.currentPost.id
-      );
-      console.log(postComments);
-      props.setCurrentComments(postComments);
-    };
-    // Reset current post
-    let helpCurrentPost = props => {
-      props.reloadCurrentPost(this.props.currentPost.id);
-    };
-
-    setTimeout(() => helpComments(this.props), 1000);
-    setTimeout(() => helpPosts(this.props), 2000);
-    setTimeout(() => helpCurrentComments(this.props), 3000);
-    setTimeout(() => helpCurrentPost(this.props), 4050);
-    setTimeout(reset(event), 5050);
+    this.setState({ content: '' });
   };
 
   stopConsoleFromGettingAngry = () => 'Smile';
