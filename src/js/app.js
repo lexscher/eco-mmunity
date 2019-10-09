@@ -24,52 +24,52 @@ class App extends Component {
         <div className="app">
         <Route
           exact
-          path="/"
+          path="/eco-mmunity"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         <Route
-          path="/assimilate"
+          path="/eco-mmunity/assimilate"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         {/* user */}
         <Route
-          path="/user/:username"
+          path="/eco-mmunity/user/:username"
           render={routerProps => <Profile {...routerProps} />}
         />
         <Route
-          path="/user/:username/communities"
+          path="/eco-mmunity/user/:username/communities"
           render={routerProps => (
             <div {...routerProps}>filler: Users communities</div>
           )}
         />
         <Route
-          path="/user/:username/posts"
+          path="/eco-mmunity/user/:username/posts"
           render={routerProps => (
             <div {...routerProps}>filler: Users posts</div>
           )}
         />
         <Route
-          path="/user/:username/comments"
+          path="/eco-mmunity/user/:username/comments"
           render={routerProps => (
             <div {...routerProps}>filler: Users comments</div>
           )}
         />
         {/* Community */}
         <Route
-          path="/eco/:community"
+          path="/eco-mmunity/eco/:community"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         <Route
-          path="/eco/:community/edit"
+          path="/eco-mmunity/eco/:community/edit"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         {/* Comments on a Post/single post */}
         <Route
-          path="/eco/:community/comments/:postId/:postSlug"
+          path="/eco-mmunity/eco/:community/comments/:postId/:postSlug"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         <Route
-          path="/eco/:community/comments/:postId/:postSlug/edit"
+          path="/eco-mmunity/eco/:community/comments/:postId/:postSlug/edit"
           render={routerProps => <Dashboard {...routerProps} />}
         />
         </div>

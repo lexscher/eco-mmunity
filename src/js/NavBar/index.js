@@ -19,13 +19,13 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="nav-bar">
-        <Link to="/" onMouseUp={() => this.resetCurrent()}>
+        <Link to="/eco-mmunity" onMouseUp={() => this.resetCurrent()}>
           Home
         </Link>
         {this.props.loggedIn ? (
           [
             <Link
-              to={`/user/${this.props.currentUser.username}`}
+              to={`/eco-mmunity/user/${this.props.currentUser.username}`}
               key={0}
               onMouseUp={() => this.resetCurrent()}
             >
@@ -33,7 +33,7 @@ class NavBar extends Component {
             </Link>,
             <Link
               key={1}
-              to="/"
+              to="/eco-mmunity"
               onClick={() => this.props.signOut()}
               onMouseUp={() => this.resetCurrent()}
             >
@@ -42,7 +42,7 @@ class NavBar extends Component {
           ]
         ) : (
           <Link
-            to="/assimilate"
+            to="/eco-mmunity/assimilate"
             onClick={() => this.props.changePage('assimilation')}
           >
             Log In
