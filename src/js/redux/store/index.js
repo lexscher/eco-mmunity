@@ -5,17 +5,24 @@ import reducer from '../reducers';
 import thunk from 'redux-thunk';
 
 const initialState = {
+  loggedIn: false,
+  loading: false,
+  pageState: 'default',
   currentUser: {
-    status: 'Logged Out',
-    token: null,
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: ""
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: ''
   },
   communities: [],
+  communitiesLoaded: false,
+  currentCommunity: { id: null },
   posts: [],
-  comments: []
+  postsLoaded: false,
+  currentPost: { id: null },
+  comments: [],
+  commentsLoaded: false,
+  currentComments: []
 };
 
 export const store = createStore(reducer, initialState, applyMiddleware(thunk));

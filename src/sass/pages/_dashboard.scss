@@ -1,0 +1,20 @@
+div.dash {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .list-posts-container {
+    position: relative;
+    height: 65rem;
+    overflow: scroll;
+    box-shadow: 0 .5rem .15rem -.3rem $color-grey;
+  }
+
+  &.dark-mode {
+    background-color: $color-black;
+    color: $color-tertiary-light
+  }
+  
+}
+

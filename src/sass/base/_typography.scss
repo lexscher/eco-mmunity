@@ -1,0 +1,36 @@
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.7;
+  background-color: #f4f4f4;
+  font-family: $primary-font-family;
+  cursor: $cursor-pointer;
+
+  p {
+    font-family: $secondary-font-family;
+  }
+}
+
+.main {
+  height: inherit;
+  width: inherit;
+}
+
+nav.nav-bar {
+  display: flex;
+
+  a {
+    text-decoration: none;
+    color: $color-white;
+    transition: .2s;
+    
+    &:not(:last-child) {
+      padding-right: 1rem;
+    }
+
+    &:hover {
+      text-shadow: 0.5rem 0.5rem 1rem $color-black, 0 0 2rem $color-secondary,
+        0 0 2rem $color-secondary-dark;
+    }
+  }
+}

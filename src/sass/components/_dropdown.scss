@@ -1,0 +1,34 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggler {
+  border: none;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: #f1f1f1;
+  height: 20rem;
+  z-index: 2;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  overflow: scroll;
+  scroll-behavior: smooth;
+
+  a {
+    color: black;
+    padding: 1.2rem 4rem;
+    text-decoration: none;
+    display: block;
+
+    &:not(:last-child) {
+      border-bottom: 0.05rem solid $color-black;
+    }
+
+    &:hover {
+      text-shadow: 0.5rem 0.5rem 1rem $color-black, 0 0 2rem $color-primary,
+        0 0 2rem $color-primary-dark;
+    }
+  }
+}

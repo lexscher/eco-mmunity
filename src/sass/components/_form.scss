@@ -1,0 +1,40 @@
+form {
+  &[class='assimilation-form'] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 38rem;
+    animation: moveInLeft 0.2s ease-in;
+  }
+
+  input {
+    margin: 0.5rem 1rem;
+    padding: 1rem 1.5rem;
+    border: solid 0.2rem $color-black;
+    border-radius: 3%;
+  }
+
+  textarea {
+    width: 99%;
+    height: 12rem;
+    resize: none;
+    padding: 1rem 1.5rem;
+    border: solid 0.2rem $color-black;
+  }
+
+  .create-post--input {
+    width: 50%;
+  }
+}
+
+div.form-container {
+  margin: 7rem 0 0 14rem;
+  height: 70%;
+  width: 50%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
